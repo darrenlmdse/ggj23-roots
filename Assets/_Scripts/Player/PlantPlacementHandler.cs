@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class PlantPlacementHandler : MonoBehaviour
 {
-    [SerializeField] private Vector3 offset;
-    [SerializeField] private GameObject plantPrefab;
-    [SerializeField] private GameObject rootPrefab;
-
     private void Update()
     {
         if (!Input.GetKeyDown(KeyCode.Space))
@@ -19,8 +15,8 @@ public class PlantPlacementHandler : MonoBehaviour
 
         if (Physics.Raycast(ray, out RaycastHit hit, 2))
         {
-            Instantiate(plantPrefab, hit.transform.position, Quaternion.identity);
-            Instantiate(rootPrefab, hit.transform.position + offset, Quaternion.identity);
+            // TODO: Add plant type choices
+            PlantManager.Instance.PlantSeed(hit.point, PlantManager.PlantType.Pumpkin);
         }
     }
 }
