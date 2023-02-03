@@ -13,8 +13,6 @@ public class PlayerInputController : MonoBehaviour
     private Vector3 playerVelocity;
 
     private Vector2 movementInput = Vector2.zero;
-    private bool action1 = false;
-    private bool action2 = false;
 
     private void Start()
     {
@@ -22,35 +20,33 @@ public class PlayerInputController : MonoBehaviour
         interactionInstigator = gameObject.GetComponent<InteractionInstigator>();
     }
 
-    public void OnMove(InputAction.CallbackContext context)
+    public void OnMove(InputAction.CallbackContext _context)
     {
-        movementInput = context.ReadValue<Vector2>();
+        movementInput = _context.ReadValue<Vector2>();
     }
 
-    public void OnAction1(InputAction.CallbackContext context)
+    public void OnAction1(InputAction.CallbackContext _context)
     {
-        action1 = context.action.triggered;
+        _context.action.performed += _context =>
+        {
+            PrimaryAction();
+        };
     }
 
-    public void OnAction2(InputAction.CallbackContext context)
+    public void OnAction2(InputAction.CallbackContext _context)
     {
-        action2 = context.action.triggered;
+        _context.action.performed += _context =>
+        {
+            SecondaryAction();
+        };
     }
 
     void Update()
     {
-        HorizontalMove();
-        if (action1)
-        {
-            PrimaryAction();
-        }
-        else if (action2)
-        {
-            SecondaryAction();
-        }
+        CheckHorizontalMove();
     }
 
-    private void HorizontalMove()
+    private void CheckHorizontalMove()
     {
         Vector3 move = new Vector3(movementInput.x, 0, movementInput.y);
         controller.Move(move * Time.deltaTime * playerSpeed);
