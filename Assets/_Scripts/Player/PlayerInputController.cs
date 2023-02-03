@@ -2,12 +2,14 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterController))]
+[RequireComponent(typeof(InteractionInstigator))]
 public class PlayerInputController : MonoBehaviour
 {
     [SerializeField]
     private float playerSpeed = 2.0f;
 
     private CharacterController controller;
+    private InteractionInstigator interactionInstigator;
     private Vector3 playerVelocity;
 
     private Vector2 movementInput = Vector2.zero;
@@ -17,6 +19,7 @@ public class PlayerInputController : MonoBehaviour
     private void Start()
     {
         controller = gameObject.GetComponent<CharacterController>();
+        interactionInstigator = gameObject.GetComponent<InteractionInstigator>();
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -26,13 +29,11 @@ public class PlayerInputController : MonoBehaviour
 
     public void OnAction1(InputAction.CallbackContext context)
     {
-        //action1 = context.ReadValue<bool>();
         action1 = context.action.triggered;
     }
 
     public void OnAction2(InputAction.CallbackContext context)
     {
-        //action2 = context.ReadValue<bool>();
         action2 = context.action.triggered;
     }
 
@@ -65,6 +66,7 @@ public class PlayerInputController : MonoBehaviour
     private void PrimaryAction()
     {
         Debug.Log(gameObject.name + " primary action");
+        interactionInstigator.StartPrimaryInteraction();
     }
 
     private void SecondaryAction()
