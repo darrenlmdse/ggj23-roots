@@ -42,12 +42,39 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Action2Hold",
+                    "name": "InventoryPrev",
                     "type": "Button",
-                    "id": "dc582257-d9d7-4619-a718-d7d8b433e4d6",
+                    "id": "47a6cf7c-7a60-4067-83a2-4ceb93e5cbfd",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Hold",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "InventoryNext",
+                    "type": "Button",
+                    "id": "3a5eb9e6-ed37-4bbb-b295-baab150ddb94",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "InventoryDiscard",
+                    "type": "Button",
+                    "id": "df9e4978-1b7a-48b3-b9d1-d69719047692",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "InventoryUse",
+                    "type": "Button",
+                    "id": "ecc50b84-898b-4b66-8d22-f750b93a0b37",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
                     "initialStateCheck": false
                 }
             ],
@@ -119,61 +146,6 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "2D Vector",
-                    "id": "17fe0434-bd40-4ac9-9d34-9fe6b79cb30f",
-                    "path": "2DVector",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Movement",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "up",
-                    "id": "2362cf81-d96d-48af-ba94-8154802e5e7e",
-                    "path": "<Keyboard>/upArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard2",
-                    "action": "Movement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "down",
-                    "id": "80ed8430-01ab-421e-b4af-c1f50ee5d38a",
-                    "path": "<Keyboard>/downArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard2",
-                    "action": "Movement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "left",
-                    "id": "f784af8a-5b5a-4c9b-8bca-075bea289de1",
-                    "path": "<Keyboard>/leftArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard2",
-                    "action": "Movement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "right",
-                    "id": "a500e9d8-2e47-4f1b-b317-524c04a7f483",
-                    "path": "<Keyboard>/rightArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard2",
-                    "action": "Movement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
                     "name": "",
                     "id": "f379309a-a2c6-4d1a-a0a4-1201e2d85806",
                     "path": "<Keyboard>/j",
@@ -191,17 +163,6 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Controller",
-                    "action": "Action1",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "b30e8afa-ee1b-45b2-8a09-04033c497bb5",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard2",
                     "action": "Action1",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -230,50 +191,6 @@
                 },
                 {
                     "name": "",
-                    "id": "8d6fb31d-e72e-45ae-91c0-694740c3c075",
-                    "path": "<Mouse>/rightButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Action2",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "e4cf0b16-2943-4f39-b149-63697770e6cb",
-                    "path": "<Keyboard>/k",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard1",
-                    "action": "Action2Hold",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "3840328a-6a6d-46a4-b1ec-57ecd7bcf382",
-                    "path": "<Gamepad>/buttonEast",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Controller",
-                    "action": "Action2Hold",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "b0611d2a-9f10-41e0-ab1b-5f18b8857d93",
-                    "path": "<Mouse>/rightButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Action2Hold",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "c358f40a-d476-40fa-a6f4-292d3344af77",
                     "path": "<Keyboard>/j",
                     "interactions": "",
@@ -296,12 +213,89 @@
                 },
                 {
                     "name": "",
-                    "id": "26d2b5cc-6fd4-43ab-8475-8ab92d230af8",
-                    "path": "<Mouse>/leftButton",
+                    "id": "84ee94e2-882d-406a-99b1-a098d0900a55",
+                    "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard2",
-                    "action": "Action1Hold",
+                    "groups": "Keyboard1",
+                    "action": "InventoryPrev",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "819868c1-d799-4407-9b74-731810bb1b63",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "InventoryPrev",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e85aac42-b5e6-43e7-8350-c46413d805e9",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard1",
+                    "action": "InventoryNext",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dc90c49f-c74a-47ac-ad62-3212147bc6b0",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "InventoryNext",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "75a09e98-69a8-4af7-b295-286fa6c15c3b",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard1",
+                    "action": "InventoryDiscard",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e6af8354-50fc-4a74-afb9-15b37446978f",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "InventoryDiscard",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "77e845f0-80e8-47bb-99a4-58cfbf25e36d",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard1",
+                    "action": "InventoryUse",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "621b2b26-6e28-402c-80a7-1feee6d88c79",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "InventoryUse",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -327,17 +321,6 @@
                 {
                     "devicePath": "<Gamepad>",
                     "isOptional": true,
-                    "isOR": false
-                }
-            ]
-        },
-        {
-            "name": "Keyboard2",
-            "bindingGroup": "Keyboard2",
-            "devices": [
-                {
-                    "devicePath": "<Keyboard>",
-                    "isOptional": false,
                     "isOR": false
                 }
             ]

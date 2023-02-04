@@ -15,22 +15,12 @@ public class Cauldron : InteractableI
         ingredientsPool = new Dictionary<Ingredient, int>();
     }
 
-    protected override void StartPrimaryInteractionImplement()
+    protected override void StartPrimaryInteractionImplement(GameObject _player)
     {
         throw new System.NotImplementedException();
     }
 
-    protected override void FinishPrimaryInteractionImplement()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    protected override void StartSecondaryInteractionImplement()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    protected override void FinishSecondaryInteractionImplement()
+    protected override void FinishPrimaryInteractionImplement(GameObject _player)
     {
         throw new System.NotImplementedException();
     }
@@ -106,7 +96,7 @@ public class Cauldron : InteractableI
     }
 
     // TODO(darren): implement.
-    protected override void StartPrimaryActionHoldImpement() { }
+    protected override void StartPrimaryActionHoldImpement(GameObject _player) { }
 
-    protected override void StopPrimaryActionHoldImplement() { }
+    protected override void StopPrimaryActionHoldImplement(GameObject _player) { }
 }

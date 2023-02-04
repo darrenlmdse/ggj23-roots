@@ -1,20 +1,17 @@
 using UnityEngine;
 
-public enum IngredientLevel
-{
-    Normal,
-    Powered,
-    Super,
-}
-
 [CreateAssetMenu(menuName = "Scriptable Objects/Potion/Ingredient")]
 public class Ingredient : ScriptableObject
 {
     [SerializeField]
-    private string displayName;
-    public string DisplayName => displayName;
+    private PlantType plantType;
+    public PlantType PlantType => plantType;
 
     [SerializeField]
-    private IngredientLevel level;
-    public IngredientLevel Level => level;
+    private ElementalType elementType = ElementalType.Neutral;
+    public ElementalType ElementType => elementType;
+
+    [SerializeField]
+    private Sprite sprite;
+    public Sprite Sprite => sprite;
 }

@@ -2,53 +2,29 @@ using UnityEngine;
 
 public abstract class InteractableI : MonoBehaviour
 {
-    [SerializeField]
-    private InteractionChannel interactionChannel;
-
-    private GameObject player;
-
-    public void StartPrimaryInteraction()
+    public void StartPrimaryInteraction(GameObject _player)
     {
-        StartPrimaryInteractionImplement();
-        interactionChannel.RaisePrimaryInteractableInitiated(this);
+        StartPrimaryInteractionImplement(_player);
     }
 
-    public void FinishPrimaryInteraction()
+    public void FinishPrimaryInteraction(GameObject _player)
     {
-        FinishPrimaryInteractionImplement();
-        interactionChannel.RaisePrimaryInteractableDone(this);
+        FinishPrimaryInteractionImplement(_player);
     }
 
-    protected abstract void StartPrimaryInteractionImplement();
-    protected abstract void FinishPrimaryInteractionImplement();
+    protected abstract void StartPrimaryInteractionImplement(GameObject _player);
+    protected abstract void FinishPrimaryInteractionImplement(GameObject _player);
 
-    public void StartSecondaryInteraction()
+    public void StartPrimaryActionHold(GameObject _player)
     {
-        StartSecondaryInteractionImplement();
-        interactionChannel.RaiseSecondaryInteractableInitiated(this);
+        StartPrimaryActionHoldImpement(_player);
     }
 
-    public void FinishSecondaryInteraction()
+    public void StopPrimaryActionHold(GameObject _player)
     {
-        FinishSecondaryInteractionImplement();
-        interactionChannel.RaiseSecondaryInteractableDone(this);
+        StopPrimaryActionHoldImplement(_player);
     }
 
-    protected abstract void StartSecondaryInteractionImplement();
-    protected abstract void FinishSecondaryInteractionImplement();
-
-    public void StartPrimaryActionHold()
-    {
-        StartPrimaryActionHoldImpement();
-        interactionChannel.RaisePrimaryInteractableHoldStart(this);
-    }
-
-    public void StopPrimaryActionHold()
-    {
-        StopPrimaryActionHoldImplement();
-        interactionChannel.RaisePrimaryInteractableHoldStop(this);
-    }
-
-    protected abstract void StartPrimaryActionHoldImpement();
-    protected abstract void StopPrimaryActionHoldImplement();
+    protected abstract void StartPrimaryActionHoldImpement(GameObject _player);
+    protected abstract void StopPrimaryActionHoldImplement(GameObject _player);
 }

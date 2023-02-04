@@ -9,6 +9,10 @@ public class Potion : ScriptableObject
     private string displayName;
     public string DisplayName => displayName;
 
+    [SerializeField]
+    private Sprite sprite;
+    public Sprite Sprite => sprite;
+
     // TODO(darren): implement.
     // effects can go here or maybe just the scale value and maybe effects should be
     // determined by a Potion Manager
