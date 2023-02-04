@@ -23,7 +23,7 @@ public class PickupItemWrapper : InteractableI
         switch (type)
         {
             case ItemType.Potion:
-                underlyingSprite_.sprite = (pickupData as Potion).Sprite;
+                underlyingSprite_.sprite = (pickupData as PotionData).Sprite;
                 break;
             case ItemType.Ingredient:
                 underlyingSprite_.sprite = (pickupData as Ingredient).Sprite;

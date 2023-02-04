@@ -67,7 +67,7 @@ public class InventoryUIController : MonoBehaviour
             switch (slot.Item.ItemType)
             {
                 case ItemType.Potion:
-                    slotUIController.SetIconImage((slot.Item.ItemData as Potion).Sprite);
+                    slotUIController.SetIconImage((slot.Item.ItemData as PotionData).Sprite);
                     break;
                 case ItemType.Ingredient:
                     slotUIController.SetIconImage((slot.Item.ItemData as Ingredient).Sprite);

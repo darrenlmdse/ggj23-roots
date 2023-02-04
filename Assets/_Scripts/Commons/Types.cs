@@ -1,8 +1,8 @@
 public enum PlantType
 {
-    Pumpkin,
-    Carrot,
-    Potato
+    Cabbage, // health
+    Carrot, // speed
+    Eggplant, // attack
 }
 
 public enum ElementalType
@@ -11,6 +11,13 @@ public enum ElementalType
     Fire,
     Leaf,
     Water,
+}
+
+public enum BuffType
+{
+    Health,
+    Speed,
+    Attack,
 }
 
 public enum ItemType

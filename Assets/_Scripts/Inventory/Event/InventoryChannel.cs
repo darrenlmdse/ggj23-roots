@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Scriptable Objects/Objects Interaction/System/Inventory Channel")]
+[CreateAssetMenu(menuName = "Scriptable Objects/Channels/Inventory Channel")]
 public class InventoryChannel : ScriptableObject
 {
     public delegate void InventorySlotCallback(InventorySlot slot);
