@@ -10,6 +10,50 @@ public class InventoryHolder : MonoBehaviour
     [SerializeField]
     private InteractionChannel interactionChannel;
 
+    public delegate void InventorySlotCallback(InventorySlot slot);
+
+    // pick-up events
+    public InventorySlotCallback OnInventoryItemAddedToInventory;
+
+    // in-invetory events
+    public InventorySlotCallback OnInventoryItemSelected;
+    public InventorySlotCallback OnInventoryItemSwtichedSlot;
+
+    // drop-off events
+    public InventorySlotCallback OnInventoryItemUsed;
+    public InventorySlotCallback OnInventoryItemRemovalInitiated;
+    public InventorySlotCallback OnInventoryItemRemovedFromInventory;
+
+    public void RaiseInventoryItemAddedToInventory(InventorySlot slot)
+    {
+        OnInventoryItemAddedToInventory?.Invoke(slot);
+    }
+
+    public void RaiseInventoryItemSwitchedSlot(InventorySlot slot)
+    {
+        OnInventoryItemSwtichedSlot?.Invoke(slot);
+    }
+
+    public void RaiseInventoryItemSelected(InventorySlot slot)
+    {
+        OnInventoryItemSelected?.Invoke(slot);
+    }
+
+    public void RaiseInventoryItemUsed(InventorySlot slot)
+    {
+        OnInventoryItemUsed?.Invoke(slot);
+    }
+
+    public void RaiseInventoryItemRemovalInitiated(InventorySlot slot)
+    {
+        OnInventoryItemRemovalInitiated?.Invoke(slot);
+    }
+
+    public void RaiseInventoryItemRemovedFromInventory(InventorySlot slot)
+    {
+        OnInventoryItemRemovedFromInventory?.Invoke(slot);
+    }
+
     private Inventory inventory;
     public Inventory Inventory => inventory;
     private InventorySlot currentSelectedSlot;
@@ -60,6 +104,8 @@ public class InventoryHolder : MonoBehaviour
             return false;
         }
         slot.StoreItem(_item);
+        RaiseInventoryItemAddedToInventory(slot);
+
         return true;
     }
 
@@ -89,6 +135,7 @@ public class InventoryHolder : MonoBehaviour
         {
             isDiscarding = true;
             discardingSlot = currentSelectedSlot;
+            RaiseInventoryItemRemovalInitiated(discardingSlot);
             interactionChannel.RaiseInventoryItemDiscarded(gameObject, currentSelectedSlot.Item);
         }
     }
@@ -98,6 +145,7 @@ public class InventoryHolder : MonoBehaviour
         isDiscarding = false;
         discardingSlot.Clear();
         discardingSlot = null;
+        RaiseInventoryItemRemovedFromInventory(discardingSlot);
     }
 
     private void SelectSlot(int _index)
@@ -107,5 +155,7 @@ public class InventoryHolder : MonoBehaviour
             return;
         }
         currentSelectedSlot = inventory.GetSlot(_index);
+        RaiseInventoryItemSelected(currentSelectedSlot);
+        Debug.Log("selected: " + _index);
     }
 }
