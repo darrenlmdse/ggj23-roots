@@ -8,6 +8,12 @@ public class EnemyController : MonoBehaviour
     private NavMeshAgent agent;
     [SerializeField] private float health = 5;
     [SerializeField] private ElementType element;
+    [SerializeField] private Transform spriteTransform;
+    [SerializeField] private float damage;
+    [SerializeField] private float damageInterval;
+
+    private Quaternion baseSpriteRotation;
+    private RootHandler targetRoot;
 
     public enum ElementType
     {
@@ -17,9 +23,15 @@ public class EnemyController : MonoBehaviour
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+        baseSpriteRotation = spriteTransform.rotation;
     }
 
     private void Start()
+    {
+        FindRoot();
+    }
+
+    private void FindRoot()
     {
         Transform closestRoot = PlantManager.Instance.GetClosestRoot(transform.position);
 
@@ -31,16 +43,29 @@ public class EnemyController : MonoBehaviour
         // TODO: need something to happen here if no roots currently exist
     }
 
+    private void Update()
+    {
+        spriteTransform.rotation = baseSpriteRotation;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         ScytheHandler scythe = other.GetComponent<ScytheHandler>();
 
-        if (scythe == null)
+        if (scythe != null)
         {
+            TakeDamage(scythe);
             return;
         }
 
-        TakeDamage(scythe);
+        RootHandler root = other.GetComponent<RootHandler>();
+
+        if (root != null)
+        {
+            targetRoot = root;
+            StartCoroutine(EatRoot());
+            return;
+        }
     }
 
     private void TakeDamage(ScytheHandler scythe)
@@ -115,6 +140,21 @@ public class EnemyController : MonoBehaviour
         {
             // TODO: Leave a corpse behind here
             Destroy(gameObject);
+        }
+    }
+
+    private IEnumerator EatRoot()
+    {
+        yield return new WaitForSeconds(damageInterval);
+
+        if (targetRoot != null)
+        {
+            targetRoot.TakeDamage(damage);
+            StartCoroutine(EatRoot());
+        }
+        else
+        {
+            FindRoot();
         }
     }
 }

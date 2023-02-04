@@ -4,17 +4,13 @@ using UnityEngine;
 
 public class PlantPlacementHandler : MonoBehaviour
 {
-    private void Update()
+    public void PlantSeed()
     {
-        if (!Input.GetKeyDown(KeyCode.Space))
-        {
-            return;
-        }
-
-        Ray ray = new Ray(transform.position + transform.forward, -Vector3.up);
+        Ray ray = new Ray(transform.position, -Vector3.up);
 
         if (Physics.Raycast(ray, out RaycastHit hit, 2))
         {
+            Debug.Log(hit.transform.name);
             // TODO: Add plant type choices
             PlantManager.Instance.PlantSeed(hit.transform.position, PlantType.Cabbage);
         }
