@@ -13,14 +13,38 @@ public class InteractionInstigator : MonoBehaviour
         EnableInteraction();
     }
 
-    public void StartPrimaryInteraction()
+    public void StartPrimaryActionPress()
     {
         if (isInteractionEnabled && HasNearbyInteractables())
         {
             int i = GetNearestInteractable();
             if (i > -1)
             {
-                nearbyInteractables[i].StartInteraction();
+                nearbyInteractables[i].StartPrimaryInteraction();
+            }
+        }
+    }
+
+    public void StartPrimaryActionHold()
+    {
+        if (isInteractionEnabled && HasNearbyInteractables())
+        {
+            int i = GetNearestInteractable();
+            if (i > -1)
+            {
+                nearbyInteractables[i].StartPrimaryActionHold();
+            }
+        }
+    }
+
+    public void StopPrimaryActionPress()
+    {
+        if (isInteractionEnabled && HasNearbyInteractables())
+        {
+            int i = GetNearestInteractable();
+            if (i > -1)
+            {
+                nearbyInteractables[i].StopPrimaryActionHold();
             }
         }
     }
@@ -40,37 +64,37 @@ public class InteractionInstigator : MonoBehaviour
         isInteractionEnabled = false;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider _other)
     {
-        InteractableI interactable = other.GetComponent<InteractableI>();
+        InteractableI interactable = _other.GetComponent<InteractableI>();
         if (interactable != null)
         {
             AddInteractable(interactable);
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit(Collider _other)
     {
-        InteractableI interactable = other.GetComponent<InteractableI>();
+        InteractableI interactable = _other.GetComponent<InteractableI>();
         if (interactable != null)
         {
             RemoveInteractable(interactable);
         }
     }
 
-    private void AddInteractable(InteractableI interactable)
+    private void AddInteractable(InteractableI _interactable)
     {
-        nearbyInteractables.Add(interactable);
+        nearbyInteractables.Add(_interactable);
     }
 
-    private void RemoveInteractable(InteractableI interactable)
+    private void RemoveInteractable(InteractableI _interactable)
     {
-        nearbyInteractables.Remove(interactable);
+        nearbyInteractables.Remove(_interactable);
     }
 
-    private InteractableI FindFirst(Predicate<InteractableI> predicate)
+    private InteractableI FindFirst(Predicate<InteractableI> _predicate)
     {
-        return nearbyInteractables.Find(predicate);
+        return nearbyInteractables.Find(_predicate);
     }
 
     private int GetNearestInteractable()
