@@ -9,8 +9,8 @@ public class PlantManager : MonoBehaviour
     [SerializeField]
     private GameObject plantPrefab;
 
-    [SerializeField]
-    private GameObject rootPrefab;
+    //[SerializeField]
+    //private GameObject rootPrefab;
 
     private List<Transform> roots;
 
@@ -32,9 +32,19 @@ public class PlantManager : MonoBehaviour
 
     public void PlantSeed(Vector3 plantPoint, PlantType p_plantType)
     {
-        Instantiate(plantPrefab, plantPoint, Quaternion.identity);        
-        
-        roots.Add(Instantiate(rootPrefab, plantPoint + GameSetupManager.Instance.Offset, Quaternion.identity).transform);
+        GameObject plant = Instantiate(plantPrefab, plantPoint, Quaternion.identity);
+
+        roots.Add(plant.GetComponentInChildren<RootHandler>().transform);
+    }
+
+    public void RemoveRoot(Transform root)
+    {
+        if (!roots.Contains(root))
+        {
+            return;
+        }
+
+        roots.Remove(root);
     }
 
     public Transform GetClosestRoot(Vector3 enemyPosition)
