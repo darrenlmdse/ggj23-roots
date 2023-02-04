@@ -3,51 +3,33 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Scriptable Objects/Channels/Interaction Channel")]
 public class InteractionChannel : ScriptableObject
 {
-    /*COLLECTIBLES*/
-    public delegate void InteractionCallbacl(InteractableI _interactable);
+    public delegate void PickupCallback(GameObject _player, PickupItemWrapper _pu);
 
-    public InteractionCallbacl OnPrimaryInteractableInitiated;
-    public InteractionCallbacl OnPrimaryInteractableDone;
+    public PickupCallback OnPickupInteracted;
+    public PickupCallback OnPickupCollected;
 
-    public InteractionCallbacl OnSecondaryInteractableInitiated;
-    public InteractionCallbacl OnSecondaryInteractableDone;
-
-    public InteractionCallbacl OnPrimaryInteractableHoldStart;
-    public InteractionCallbacl OnPrimaryInteractableHoldStop;
-    public InteractionCallbacl OnPrimaryInteractableHoldComplete;
-
-    public void RaisePrimaryInteractableInitiated(InteractableI _interactable)
+    public void RaisePickupInteracted(GameObject _player, PickupItemWrapper _pu)
     {
-        OnPrimaryInteractableInitiated?.Invoke(_interactable);
+        OnPickupInteracted?.Invoke(_player, _pu);
     }
 
-    public void RaisePrimaryInteractableDone(InteractableI _interactable)
+    public void RaisePickupCollected(GameObject _player, PickupItemWrapper _pu)
     {
-        OnPrimaryInteractableDone?.Invoke(_interactable);
+        OnPickupCollected?.Invoke(_player, _pu);
     }
 
-    public void RaiseSecondaryInteractableInitiated(InteractableI _interactable)
+    public delegate void InventoryItemCallback(GameObject _player, InventoryItemWrapper _pu);
+
+    public InventoryItemCallback OnInventoryItemDiscarded;
+    public InventoryItemCallback OnInventoryItemDropped;
+
+    public void RaiseInventoryItemDiscarded(GameObject _player, InventoryItemWrapper _item)
     {
-        OnSecondaryInteractableInitiated?.Invoke(_interactable);
+        OnInventoryItemDiscarded?.Invoke(_player, _item);
     }
 
-    public void RaiseSecondaryInteractableDone(InteractableI _interactable)
+    public void RaiseInventoryItemDropped(GameObject _player, InventoryItemWrapper _item)
     {
-        OnSecondaryInteractableDone?.Invoke(_interactable);
-    }
-
-    public void RaisePrimaryInteractableHoldStart(InteractableI _interactable)
-    {
-        OnPrimaryInteractableHoldStart?.Invoke(_interactable);
-    }
-
-    public void RaisePrimaryInteractableHoldStop(InteractableI _interactable)
-    {
-        OnPrimaryInteractableHoldStop?.Invoke(_interactable);
-    }
-
-    public void RaisePrimaryInteractableHoldComplete(InteractableI _interactable)
-    {
-        OnPrimaryInteractableHoldComplete?.Invoke(_interactable);
+        OnInventoryItemDropped?.Invoke(_player, _item);
     }
 }

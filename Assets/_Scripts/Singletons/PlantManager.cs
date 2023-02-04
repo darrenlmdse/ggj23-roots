@@ -6,17 +6,16 @@ public class PlantManager : MonoBehaviour
 {
     public static PlantManager Instance;
 
-    [SerializeField] private GameObject plantPrefab;
-    [SerializeField] private GameObject rootPrefab;
+    [SerializeField]
+    private GameObject plantPrefab;
+
+    [SerializeField]
+    private GameObject rootPrefab;
 
     private List<Transform> roots;
 
-    public enum PlantType
-    {
-        Pumpkin, Carrot, Potato
-    }
-
-    [SerializeField] private Dictionary<PlantType, GameObject> plants;
+    [SerializeField]
+    private Dictionary<PlantType, GameObject> plants;
 
     public void PlantSeed(Vector3 plantPoint, PlantType p_plantType)
     {
@@ -34,7 +33,7 @@ public class PlantManager : MonoBehaviour
         int closestRootIndex = 0;
         float shortestDistance = (enemyPosition - roots[0].position).magnitude;
 
-        for (int i=1; i<roots.Count; i++)
+        for (int i = 1; i < roots.Count; i++)
         {
             float distance = (enemyPosition - roots[0].position).magnitude;
 

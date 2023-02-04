@@ -25,38 +25,27 @@ public class DebugPrintInteractable : InteractableI
         }
     }
 
-    protected override void StartPrimaryInteractionImplement()
+    protected override void StartPrimaryInteractionImplement(GameObject _player)
     {
-        Debug.Log("primary press initiated " + gameObject.name);
-        FinishPrimaryInteraction();
+        Debug.Log(_player.gameObject.name + "initiated primary press on" + gameObject.name);
+        FinishPrimaryInteraction(_player);
     }
 
-    protected override void FinishPrimaryInteractionImplement()
+    protected override void FinishPrimaryInteractionImplement(GameObject _player)
     {
-        Debug.Log("primary press done " + gameObject.name);
+        Debug.Log(_player.gameObject.name + "finished primary press on" + gameObject.name);
     }
 
-    protected override void FinishSecondaryInteractionImplement()
+    protected override void StartPrimaryActionHoldImpement(GameObject _player)
     {
-        Debug.Log("secondary interaction initiated " + gameObject.name);
-    }
-
-    protected override void StartSecondaryInteractionImplement()
-    {
-        Debug.Log("secondary interaction initiated " + gameObject.name);
-        FinishSecondaryInteraction();
-    }
-
-    protected override void StartPrimaryActionHoldImpement()
-    {
-        Debug.Log("primary hold started " + gameObject.name);
+        Debug.Log(_player.gameObject.name + "started primary hold on" + gameObject.name);
         isHeld = true;
     }
 
-    protected override void StopPrimaryActionHoldImplement()
+    protected override void StopPrimaryActionHoldImplement(GameObject _player)
     {
-        Debug.Log("primary hold stopped " + gameObject.name);
-        Debug.Log("primary hold for " + heldTime);
+        Debug.Log(_player.gameObject.name + "stopped primary hold on" + gameObject.name);
+        Debug.Log("held for " + heldTime);
         isHeld = false;
     }
 }

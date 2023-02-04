@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(InteractionInstigator))]
+[RequireComponent(typeof(InventoryHolder))]
 public class PlayerInputController : MonoBehaviour
 {
     [SerializeField]
@@ -10,6 +11,7 @@ public class PlayerInputController : MonoBehaviour
 
     private CharacterController controller;
     private InteractionInstigator interactionInstigator;
+    private InventoryHolder inventoryHolder;
     private Vector3 playerVelocity;
 
     private Vector2 movementInput = Vector2.zero;
@@ -18,6 +20,7 @@ public class PlayerInputController : MonoBehaviour
     {
         controller = gameObject.GetComponent<CharacterController>();
         interactionInstigator = gameObject.GetComponent<InteractionInstigator>();
+        inventoryHolder = gameObject.GetComponent<InventoryHolder>();
     }
 
     public void OnMove(InputAction.CallbackContext _context)
@@ -43,22 +46,46 @@ public class PlayerInputController : MonoBehaviour
 
     public void OnAction1Hold(InputAction.CallbackContext _context)
     {
+        /*
         // TODO(darren): implement.
-        // we should disable movement
         _context.action.started += context =>
         {
             StartPrimaryActionHold();
         };
-        /*
-        _context.action.performed += context =>
-        {
-            FinishPrimaryActionHold();
-        };
-        */
         _context.action.canceled += context =>
         {
             StopPrimaryActionHold();
         };
+        */
+    }
+
+    public void OnInventoryPrev(InputAction.CallbackContext _context)
+    {
+        _context.action.performed += context =>
+        {
+            inventoryHolder.SelectPreviousSlot();
+        };
+    }
+
+    public void OnInventoryNext(InputAction.CallbackContext _context)
+    {
+        _context.action.performed += context =>
+        {
+            inventoryHolder.SelectNextSlot();
+        };
+    }
+
+    public void OnInventoryDiscard(InputAction.CallbackContext _context)
+    {
+        _context.action.performed += context =>
+        {
+            inventoryHolder.StartDiscardSlot();
+        };
+    }
+
+    public void OnInventoryUse(InputAction.CallbackContext _context)
+    {
+        // TODO(darren): implement.
     }
 
     void Update()
@@ -99,7 +126,7 @@ public class PlayerInputController : MonoBehaviour
     private void StopPrimaryActionHold()
     {
         Debug.Log(gameObject.name + " stopped primary action hold");
-        interactionInstigator.StopPrimaryActionPress();
+        interactionInstigator.StopPrimaryActionHold();
     }
 
     private void FinishPrimaryActionHold()
