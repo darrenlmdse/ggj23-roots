@@ -24,6 +24,17 @@ public class PlayerInputController : MonoBehaviour
     private bool isMoving;
     private bool isAttacking;
 
+    private Vector3 adjustedForward;
+    private Vector3 adjustedRight;
+    private Vector3 baseScale;
+
+    private void Awake()
+    {
+        adjustedForward = (Vector3.forward + Vector3.right).normalized;
+        adjustedRight = (-Vector3.forward + Vector3.right).normalized;
+        baseScale = animator.transform.localScale;
+    }
+
     private void Start()
     {
         controller = gameObject.GetComponent<CharacterController>();
@@ -103,8 +114,17 @@ public class PlayerInputController : MonoBehaviour
 
     private void CheckHorizontalMove()
     {
-        Vector3 move = new Vector3(movementInput.x, 0, movementInput.y);
+        Vector3 move = adjustedForward * movementInput.y + adjustedRight * movementInput.x; //new Vector3(movementInput.x, 0, movementInput.y);
         controller.Move(move * Time.deltaTime * playerSpeed);
+
+        if (movementInput.x > 0)
+        {
+            animator.transform.localScale = new Vector3(baseScale.x, baseScale.y, baseScale.z);
+        }
+        else if (movementInput.x < 0)
+        {
+            animator.transform.localScale = new Vector3(-baseScale.x, baseScale.y, baseScale.z);
+        }
 
         if (move != Vector3.zero)
         {
