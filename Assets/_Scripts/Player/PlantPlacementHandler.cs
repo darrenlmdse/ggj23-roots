@@ -16,7 +16,7 @@ public class PlantPlacementHandler : MonoBehaviour
         if (Physics.Raycast(ray, out RaycastHit hit, 2))
         {
             // TODO: Add plant type choices
-            PlantManager.Instance.PlantSeed(hit.point, PlantType.Pumpkin);
+            PlantManager.Instance.PlantSeed(hit.transform.position, PlantManager.PlantType.Pumpkin);
         }
     }
 }
