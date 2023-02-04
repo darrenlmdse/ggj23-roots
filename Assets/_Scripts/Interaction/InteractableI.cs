@@ -5,46 +5,50 @@ public abstract class InteractableI : MonoBehaviour
     [SerializeField]
     private InteractionChannel interactionChannel;
 
-    private bool isOverlapped;
     private GameObject player;
 
-    private void Awake()
+    public void StartPrimaryInteraction()
     {
-        isOverlapped = false;
+        StartPrimaryInteractionImplement();
+        interactionChannel.RaisePrimaryInteractableInitiated(this);
     }
 
-    private void Update() { }
-
-    private void OnTriggerEnter(Collider other)
+    public void FinishPrimaryInteraction()
     {
-        if (other.tag == "Player")
-        {
-            isOverlapped = true;
-            player = other.gameObject;
-        }
+        FinishPrimaryInteractionImplement();
+        interactionChannel.RaisePrimaryInteractableDone(this);
     }
 
-    private void OnTriggerExit(Collider other)
+    protected abstract void StartPrimaryInteractionImplement();
+    protected abstract void FinishPrimaryInteractionImplement();
+
+    public void StartSecondaryInteraction()
     {
-        if (other.tag == "Player")
-        {
-            isOverlapped = false;
-            player = null;
-        }
+        StartSecondaryInteractionImplement();
+        interactionChannel.RaiseSecondaryInteractableInitiated(this);
     }
 
-    public void StartInteraction()
+    public void FinishSecondaryInteraction()
     {
-        interactionChannel.RaiseInteractableInitiated(this);
-        StartInteractionImplement();
+        FinishSecondaryInteractionImplement();
+        interactionChannel.RaiseSecondaryInteractableDone(this);
     }
 
-    public void DoneInteraction()
+    protected abstract void StartSecondaryInteractionImplement();
+    protected abstract void FinishSecondaryInteractionImplement();
+
+    public void StartPrimaryActionHold()
     {
-        interactionChannel.RaiseInteractableDone(this);
-        DoneInteractionImplement();
+        StartPrimaryActionHoldImpement();
+        interactionChannel.RaisePrimaryInteractableHoldStart(this);
     }
 
-    protected abstract void StartInteractionImplement();
-    protected abstract void DoneInteractionImplement();
+    public void StopPrimaryActionHold()
+    {
+        StopPrimaryActionHoldImplement();
+        interactionChannel.RaisePrimaryInteractableHoldStop(this);
+    }
+
+    protected abstract void StartPrimaryActionHoldImpement();
+    protected abstract void StopPrimaryActionHoldImplement();
 }

@@ -27,17 +27,37 @@ public class PlayerInputController : MonoBehaviour
 
     public void OnAction1(InputAction.CallbackContext _context)
     {
-        _context.action.performed += _context =>
+        _context.action.performed += context =>
         {
-            PrimaryAction();
+            StartPrimaryActionPress();
         };
     }
 
     public void OnAction2(InputAction.CallbackContext _context)
     {
-        _context.action.performed += _context =>
+        _context.action.performed += context =>
         {
-            SecondaryAction();
+            StartSecondaryActionPress();
+        };
+    }
+
+    public void OnAction1Hold(InputAction.CallbackContext _context)
+    {
+        // TODO(darren): implement.
+        // we should disable movement
+        _context.action.started += context =>
+        {
+            StartPrimaryActionHold();
+        };
+        /*
+        _context.action.performed += context =>
+        {
+            FinishPrimaryActionHold();
+        };
+        */
+        _context.action.canceled += context =>
+        {
+            StopPrimaryActionHold();
         };
     }
 
@@ -59,14 +79,31 @@ public class PlayerInputController : MonoBehaviour
         controller.Move(playerVelocity * Time.deltaTime);
     }
 
-    private void PrimaryAction()
+    private void StartPrimaryActionPress()
     {
-        Debug.Log(gameObject.name + " primary action");
-        interactionInstigator.StartPrimaryInteraction();
+        Debug.Log(gameObject.name + " primary action press");
+        interactionInstigator.StartPrimaryActionPress();
     }
 
-    private void SecondaryAction()
+    private void StartSecondaryActionPress()
     {
-        Debug.Log(gameObject.name + " secondary action");
+        Debug.Log(gameObject.name + " secondary action press");
+    }
+
+    private void StartPrimaryActionHold()
+    {
+        Debug.Log(gameObject.name + " started primary action hold");
+        interactionInstigator.StartPrimaryActionHold();
+    }
+
+    private void StopPrimaryActionHold()
+    {
+        Debug.Log(gameObject.name + " stopped primary action hold");
+        interactionInstigator.StopPrimaryActionPress();
+    }
+
+    private void FinishPrimaryActionHold()
+    {
+        Debug.Log(gameObject.name + " finished primary action hold");
     }
 }
