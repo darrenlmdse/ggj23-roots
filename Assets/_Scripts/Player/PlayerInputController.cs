@@ -11,8 +11,11 @@ public class PlayerInputController : MonoBehaviour
     [SerializeField]
     private float playerSpeed = 2.0f;
 
-    [SerializeField] private Animator animator;
-    [SerializeField] private UnityEvent attackEvent;
+    [SerializeField]
+    private Animator animator;
+
+    [SerializeField]
+    private UnityEvent attackEvent;
 
     private CharacterController controller;
     private InteractionInstigator interactionInstigator;
@@ -114,7 +117,7 @@ public class PlayerInputController : MonoBehaviour
 
                 if (!isAttacking)
                 {
-                    animator.CrossFade("Run", 0.1f);
+                    // animator.CrossFade("Run", 0.1f);
                 }
             }
 
@@ -126,7 +129,7 @@ public class PlayerInputController : MonoBehaviour
 
             if (!isAttacking)
             {
-                animator.CrossFade("Idle", 0.1f);
+                //animator.CrossFade("Idle", 0.1f);
             }
         }
 
@@ -165,7 +168,7 @@ public class PlayerInputController : MonoBehaviour
     private IEnumerator WaitForAttackEnd()
     {
         isAttacking = true;
-        animator.CrossFade("Attack", 0.1f);
+        // animator.CrossFade("Attack", 0.1f);
         attackEvent?.Invoke();
 
         yield return new WaitForSeconds(0.75f);

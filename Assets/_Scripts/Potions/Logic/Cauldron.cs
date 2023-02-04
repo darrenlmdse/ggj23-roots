@@ -7,6 +7,9 @@ public class Cauldron : InteractableI
     [SerializeField]
     private PotionBook potionBook;
 
+    [SerializeField]
+    private InteractionChannel interactionChannel;
+
     private const int kIngredientPoolSize = 3;
     private List<Ingredient> ingredientsPool;
 
@@ -19,6 +22,7 @@ public class Cauldron : InteractableI
     {
         if (ingredientsPool.Count != kIngredientPoolSize)
         {
+            Debug.Log("0");
             return null;
         }
 
@@ -45,7 +49,6 @@ public class Cauldron : InteractableI
                     break;
             }
         }
-
         BuffType buff = BuffType.Health;
         if (ingredientsPool[0].PlantType == PlantType.Carrot)
         {
@@ -119,6 +122,7 @@ public class Cauldron : InteractableI
                 }
                 break;
         }
+        Debug.Log("7");
         return null;
     }
 
@@ -130,6 +134,7 @@ public class Cauldron : InteractableI
             return false;
         }
         ingredientsPool.Add(_ingredient);
+        Debug.Log("added:" + _ingredient.name);
         return true;
     }
 
@@ -152,6 +157,17 @@ public class Cauldron : InteractableI
 
     protected override void StartPrimaryInteractionImplement(GameObject _player)
     {
+        if (ingredientsPool.Count == 3)
+        {
+            PotionData newPotion = TryMakePotion();
+            if (newPotion != null)
+            {
+                interactionChannel.RaisePotionBrewed(_player, newPotion);
+                Debug.Log("made potion: " + newPotion);
+            }
+            return;
+        }
+
         InventorySlot currentSlot = _player.GetComponent<InventoryHolder>().CurrentSelectedSlot;
         if (
             currentSlot == null

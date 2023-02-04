@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InventoryManager : MonoBehaviour
+public class StuffManager : MonoBehaviour
 {
     [SerializeField]
     private InteractionChannel interactionChannel;
@@ -15,12 +15,14 @@ public class InventoryManager : MonoBehaviour
     {
         interactionChannel.OnPickupInteracted += InteractionChannel_OnPickupInteracted;
         interactionChannel.OnInventoryItemDiscarded += InteractionChannel_OnInventoryItemDiscarded;
+        interactionChannel.OnPotionBrewed += InteractionChannel_OnPotionBrewed;
     }
 
     private void OnDestroy()
     {
         interactionChannel.OnPickupInteracted -= InteractionChannel_OnPickupInteracted;
         interactionChannel.OnInventoryItemDiscarded -= InteractionChannel_OnInventoryItemDiscarded;
+        interactionChannel.OnPotionBrewed -= InteractionChannel_OnPotionBrewed;
     }
 
     private void InteractionChannel_OnInventoryItemDiscarded(
@@ -50,5 +52,17 @@ public class InventoryManager : MonoBehaviour
 
         _pu.FinishPrimaryInteraction(_player);
         interactionChannel.RaisePickupCollected(_player, _pu);
+    }
+
+    private void InteractionChannel_OnPotionBrewed(GameObject _player, PotionData _potion)
+    {
+        PickupItemWrapper newPickup = Instantiate(
+                pickupPrefab,
+                _player.transform.position,
+                Quaternion.identity
+            )
+            .GetComponent<PickupItemWrapper>();
+        newPickup.SetData(_potion);
+        newPickup.SetType(ItemType.Potion);
     }
 }

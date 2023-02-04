@@ -93,7 +93,6 @@ public class InventoryUIController : MonoBehaviour
         InventorySlotUIController slotUIController = GetInventorySlot(slot.Index);
         DeselectAll();
         slotUIController.SetOutlineImage(selectedOutlineSprite_);
-        Debug.Log("Here");
     }
 
     private void InventoryHolder_Inventory_OnSlotAdded(InventorySlot slot)

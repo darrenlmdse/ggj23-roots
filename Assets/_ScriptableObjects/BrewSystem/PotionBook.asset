@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2851433a66468e45bf2806164339237, type: 3}
   m_Name: PotionBook
   m_EditorClassIdentifier: 
-  kHealthNeutralPotion: {fileID: 0}
+  kHealthNeutralPotion: {fileID: 11400000, guid: 7e6a89bf8b0c87341b882a17bc1ef707, type: 2}
   kHealthFirePotion: {fileID: 0}
   kHealthLeafPotion: {fileID: 0}
   kHealthWaterPotion: {fileID: 0}
