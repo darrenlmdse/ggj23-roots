@@ -156,6 +156,26 @@ public class InventoryHolder : MonoBehaviour
         RaiseInventoryItemRemovedFromInventory(currentSelectedSlot);
     }
 
+    public void ConsumeCurrentSlot()
+    {
+        if (currentSelectedSlot.Item == null)
+        {
+            return;
+        }
+
+        switch (currentSelectedSlot.Item.ItemType)
+        {
+            case ItemType.Potion:
+                //TODO(darren): use it
+                break;
+            case ItemType.Empty:
+            case ItemType.Ingredient:
+            case ItemType.Slime:
+                // can't use
+                return;
+        }
+    }
+
     private void SelectSlot(int _index)
     {
         if (_index >= slotCounts)

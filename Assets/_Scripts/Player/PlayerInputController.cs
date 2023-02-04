@@ -107,7 +107,10 @@ public class PlayerInputController : MonoBehaviour
 
     public void OnInventoryUse(InputAction.CallbackContext _context)
     {
-        // TODO(darren): implement.
+        _context.action.performed += context =>
+        {
+            inventoryHolder.ConsumeCurrentSlot();
+        };
     }
 
     void Update()
@@ -159,7 +162,32 @@ public class PlayerInputController : MonoBehaviour
     private void StartPrimaryActionPress()
     {
         Debug.Log(gameObject.name + " primary action press");
-        interactionInstigator.StartPrimaryActionPress();
+        InventorySlot currentEquip = inventoryHolder.CurrentSelectedSlot;
+        if (interactionInstigator.StartPrimaryActionPress())
+        {
+            // nothing to do for now
+        }
+        else if (currentEquip.Item != null && currentEquip.Item.ItemType == ItemType.Ingredient)
+        {
+            // try planting instead
+            Ray ray = new Ray(transform.position, -Vector3.up);
+            if (Physics.Raycast(ray, out RaycastHit hit, 2))
+            {
+                Vector3 testPlantPos = hit.transform.position;
+                if (PlantManager.Instance.HasPlantHead(testPlantPos))
+                {
+                    // cannot plant
+                }
+                else
+                {
+                    // can plant
+                    PlantManager.Instance.PlantSeed(
+                        testPlantPos,
+                        (currentEquip.Item.ItemData as Ingredient).PlantType
+                    );
+                }
+            }
+        }
     }
 
     private void StartSecondaryActionPress()

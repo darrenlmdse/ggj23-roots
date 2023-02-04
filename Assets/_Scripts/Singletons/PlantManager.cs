@@ -12,10 +12,13 @@ public class PlantManager : MonoBehaviour
     [SerializeField]
     private GameObject rootPrefab;
 
+    private List<Transform> heads;
     private List<Transform> roots;
 
     [SerializeField]
     private Dictionary<PlantType, GameObject> plants;
+
+    private const float kCompareDistance = 0.4f;
 
     private void Awake()
     {
@@ -27,14 +30,21 @@ public class PlantManager : MonoBehaviour
 
         Instance = this;
 
+        heads = new List<Transform>();
         roots = new List<Transform>();
     }
 
     public void PlantSeed(Vector3 plantPoint, PlantType p_plantType)
     {
-        Instantiate(plantPrefab, plantPoint, Quaternion.identity);        
-        
-        roots.Add(Instantiate(rootPrefab, plantPoint + GameSetupManager.Instance.Offset, Quaternion.identity).transform);
+        Instantiate(plantPrefab, plantPoint, Quaternion.identity);
+
+        roots.Add(
+            Instantiate(
+                rootPrefab,
+                plantPoint + GameSetupManager.Instance.Offset,
+                Quaternion.identity
+            ).transform
+        );
     }
 
     public Transform GetClosestRoot(Vector3 enemyPosition)
@@ -59,5 +69,18 @@ public class PlantManager : MonoBehaviour
         }
 
         return roots[closestRootIndex];
+    }
+
+    public bool HasPlantHead(Vector3 plantPos)
+    {
+        foreach (Transform head in heads)
+        {
+            if (Vector3.Distance(head.position, plantPos) <= kCompareDistance)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
