@@ -85,13 +85,13 @@ public class InteractionInstigator : MonoBehaviour
     public void AddInteractable(InteractableI _interactable)
     {
         nearbyInteractables.Add(_interactable);
-        Debug.Log("added: " + _interactable.name);
+        //Debug.Log("added: " + _interactable.name);
     }
 
     public void RemoveInteractable(InteractableI _interactable)
     {
         nearbyInteractables.Remove(_interactable);
-        Debug.Log("remove: " + _interactable.name);
+        //Debug.Log("remove: " + _interactable.name);
     }
 
     private InteractableI FindFirst(Predicate<InteractableI> _predicate)

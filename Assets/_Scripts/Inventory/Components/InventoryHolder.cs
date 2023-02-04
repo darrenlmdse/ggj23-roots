@@ -57,6 +57,7 @@ public class InventoryHolder : MonoBehaviour
     private Inventory inventory;
     public Inventory Inventory => inventory;
     private InventorySlot currentSelectedSlot;
+    public InventorySlot CurrentSelectedSlot => currentSelectedSlot;
 
     private bool isDiscarding;
     private InventorySlot discardingSlot;
@@ -148,6 +149,13 @@ public class InventoryHolder : MonoBehaviour
         RaiseInventoryItemRemovedFromInventory(discardingSlot);
     }
 
+    public void ClearCurrentSlot()
+    {
+        RaiseInventoryItemRemovalInitiated(currentSelectedSlot);
+        currentSelectedSlot.Clear();
+        RaiseInventoryItemRemovedFromInventory(currentSelectedSlot);
+    }
+
     private void SelectSlot(int _index)
     {
         if (_index >= slotCounts)
@@ -156,6 +164,5 @@ public class InventoryHolder : MonoBehaviour
         }
         currentSelectedSlot = inventory.GetSlot(_index);
         RaiseInventoryItemSelected(currentSelectedSlot);
-        Debug.Log("selected: " + _index);
     }
 }

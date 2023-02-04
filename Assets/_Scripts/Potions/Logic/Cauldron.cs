@@ -5,98 +5,192 @@ using UnityEngine;
 public class Cauldron : InteractableI
 {
     [SerializeField]
-    private List<Recipe> recipesBook;
-    public List<Recipe> RecipesBook => recipesBook;
+    private PotionBook potionBook;
 
-    private Dictionary<Ingredient, int> ingredientsPool;
+    [SerializeField]
+    private InteractionChannel interactionChannel;
+
+    private const int kIngredientPoolSize = 3;
+    private List<Ingredient> ingredientsPool;
 
     private void Awake()
     {
-        ingredientsPool = new Dictionary<Ingredient, int>();
+        ingredientsPool = new List<Ingredient>();
     }
 
-    protected override void StartPrimaryInteractionImplement(GameObject _player)
+    private PotionData TryMakePotion()
     {
-        throw new System.NotImplementedException();
-    }
-
-    protected override void FinishPrimaryInteractionImplement(GameObject _player)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    private Potion TryMakePotion()
-    {
-        foreach (Recipe recipe in recipesBook)
+        if (ingredientsPool.Count != kIngredientPoolSize)
         {
-            Dictionary<Ingredient, int> pool = new Dictionary<Ingredient, int>();
-            DeepCopyRecipesDictionary(ingredientsPool, pool);
-            foreach (KeyValuePair<Ingredient, int> recipeItem in recipe.RecipeItems)
+            Debug.Log("0");
+            return null;
+        }
+
+        int fire = 0;
+        int water = 0;
+        int leaf = 0;
+        for (int i = 0; i < kIngredientPoolSize; ++i)
+        {
+            if (ingredientsPool[i].PlantType != ingredientsPool[0].PlantType)
             {
-                if (pool.ContainsKey(recipeItem.Key))
-                {
-                    pool[recipeItem.Key] -= 1;
-                    if (pool[recipeItem.Key] == 0)
-                    {
-                        pool.Remove(recipeItem.Key);
-                    }
-                }
-                else
-                {
-                    return null;
-                }
-            }
-            if (pool.Count > 0)
-            {
+                // only 3 of a kind
                 return null;
             }
-            else
+            switch (ingredientsPool[i].ElementType)
             {
-                return recipe.Potion;
+                case ElementalType.Fire:
+                    fire++;
+                    break;
+                case ElementalType.Water:
+                    water++;
+                    break;
+                case ElementalType.Leaf:
+                    leaf++;
+                    break;
             }
         }
-        // if no matching recipe is found
-        return null;
-    }
-
-    private void AddIngredient(Ingredient _ingredient)
-    {
-        if (ingredientsPool.ContainsKey(_ingredient))
+        BuffType buff = BuffType.Health;
+        if (ingredientsPool[0].PlantType == PlantType.Carrot)
         {
-            ingredientsPool[_ingredient] += 1;
+            buff = BuffType.Speed;
+        }
+        else if (ingredientsPool[0].PlantType == PlantType.Eggplant)
+        {
+            buff = BuffType.Attack;
+        }
+
+        // TODO(darren): implement
+        if (fire == water && fire == leaf)
+        {
+            return MakePotionData(ElementalType.Neutral, buff);
+        }
+        else if (fire > water && fire > leaf)
+        {
+            return MakePotionData(ElementalType.Fire, buff);
+        }
+        else if (water > fire && water > leaf)
+        {
+            return MakePotionData(ElementalType.Water, buff);
         }
         else
         {
-            ingredientsPool.Add(_ingredient, 1);
+            return MakePotionData(ElementalType.Leaf, buff);
         }
     }
 
-    private List<KeyValuePair<Ingredient, int>> ClearAllIngredients()
+    private PotionData MakePotionData(ElementalType element, BuffType buff)
     {
-        List<KeyValuePair<Ingredient, int>> ret = new List<KeyValuePair<Ingredient, int>>();
-        foreach (KeyValuePair<Ingredient, int> kvp in ingredientsPool)
+        switch (buff)
         {
-            ret.Add(kvp);
+            case BuffType.Health:
+                switch (element)
+                {
+                    case ElementalType.Neutral:
+                        return potionBook.kHealthNeutralPotion;
+                    case ElementalType.Fire:
+                        return potionBook.kHealthFirePotion;
+                    case ElementalType.Water:
+                        return potionBook.kHealthWaterPotion;
+                    case ElementalType.Leaf:
+                        return potionBook.kHealthLeafPotion;
+                }
+                break;
+            case BuffType.Speed:
+                switch (element)
+                {
+                    case ElementalType.Neutral:
+                        return potionBook.kSpeedNeutralPotion;
+                    case ElementalType.Fire:
+                        return potionBook.kSpeedFirePotion;
+                    case ElementalType.Water:
+                        return potionBook.kSpeedWaterPotion;
+                    case ElementalType.Leaf:
+                        return potionBook.kSpeedLeafPotion;
+                }
+                break;
+            case BuffType.Attack:
+                switch (element)
+                {
+                    case ElementalType.Neutral:
+                        return potionBook.kAttackNeutralPotion;
+                    case ElementalType.Fire:
+                        return potionBook.kAttackFirePotion;
+                    case ElementalType.Water:
+                        return potionBook.kAttackWaterPotion;
+                    case ElementalType.Leaf:
+                        return potionBook.kAttackLeafPotion;
+                }
+                break;
+        }
+        Debug.Log("7");
+        return null;
+    }
+
+    private bool TryAddIngredient(Ingredient _ingredient)
+    {
+        if (ingredientsPool.Count >= 3)
+        {
+            Debug.Log("Cauldron Full!");
+            return false;
+        }
+        ingredientsPool.Add(_ingredient);
+        Debug.Log("added:" + _ingredient.name);
+        return true;
+    }
+
+    private List<Ingredient> ClearAllIngredients()
+    {
+        List<Ingredient> ret = new List<Ingredient>();
+        foreach (Ingredient i in ingredientsPool)
+        {
+            ret.Add(i);
         }
         ingredientsPool.Clear();
 
         return ret;
     }
 
-    private void DeepCopyRecipesDictionary(
-        Dictionary<Ingredient, int> _source,
-        Dictionary<Ingredient, int> _dest
-    )
-    {
-        _dest.Clear();
-        foreach (KeyValuePair<Ingredient, int> kvp in _source)
-        {
-            _dest.Add(kvp.Key, kvp.Value);
-        }
-    }
-
     // TODO(darren): implement.
     protected override void StartPrimaryActionHoldImpement(GameObject _player) { }
 
     protected override void StopPrimaryActionHoldImplement(GameObject _player) { }
+
+    protected override void StartPrimaryInteractionImplement(GameObject _player)
+    {
+        if (ingredientsPool.Count == 3)
+        {
+            PotionData newPotion = TryMakePotion();
+            if (newPotion != null)
+            {
+                interactionChannel.RaisePotionBrewed(_player, newPotion);
+                Debug.Log("made potion: " + newPotion);
+            }
+            else
+            {
+                Debug.Log("failed to make potion");
+            }
+            ClearAllIngredients();
+            return;
+        }
+
+        InventorySlot currentSlot = _player.GetComponent<InventoryHolder>().CurrentSelectedSlot;
+        if (
+            currentSlot == null
+            || currentSlot.Item == null
+            || currentSlot.Item.ItemType != ItemType.Ingredient
+        )
+        {
+            return;
+        }
+
+        if (TryAddIngredient(currentSlot.Item.ItemData as Ingredient))
+        {
+            FinishPrimaryInteractionImplement(_player);
+        }
+    }
+
+    protected override void FinishPrimaryInteractionImplement(GameObject _player)
+    {
+        _player.GetComponent<InventoryHolder>().ClearCurrentSlot();
+    }
 }

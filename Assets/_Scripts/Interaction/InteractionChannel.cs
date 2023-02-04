@@ -32,4 +32,12 @@ public class InteractionChannel : ScriptableObject
     {
         OnInventoryItemDropped?.Invoke(_player, _item);
     }
+
+    public delegate void PotionCallback(GameObject _player, PotionData _potion);
+    public PotionCallback OnPotionBrewed;
+
+    public void RaisePotionBrewed(GameObject _player, PotionData _potion)
+    {
+        OnPotionBrewed?.Invoke(_player, _potion);
+    }
 }

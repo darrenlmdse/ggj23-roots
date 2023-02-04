@@ -41,7 +41,7 @@ public class InventoryUIController : MonoBehaviour
             InventoryChannel_OnInventoryItemAddedToInventory;
         inventoryHolder_.OnInventoryItemSwtichedSlot -=
             InventoryChannel_OnInventoryItemSwtichedSlot;
-        inventoryHolder_.OnInventoryItemRemovalInitiated -=
+        inventoryHolder_.OnInventoryItemRemovedFromInventory -=
             InventoryChannel_OnInventoryItemRemovalInitiated;
         inventoryHolder_.OnInventoryItemSelected -= InventoryChannel_OnInventoryItemSelected;
         inventoryHolder_.Inventory.OnSlotAdded -= InventoryHolder_Inventory_OnSlotAdded;
@@ -67,7 +67,7 @@ public class InventoryUIController : MonoBehaviour
             switch (slot.Item.ItemType)
             {
                 case ItemType.Potion:
-                    slotUIController.SetIconImage((slot.Item.ItemData as Potion).Sprite);
+                    slotUIController.SetIconImage((slot.Item.ItemData as PotionData).Sprite);
                     break;
                 case ItemType.Ingredient:
                     slotUIController.SetIconImage((slot.Item.ItemData as Ingredient).Sprite);
@@ -93,7 +93,6 @@ public class InventoryUIController : MonoBehaviour
         InventorySlotUIController slotUIController = GetInventorySlot(slot.Index);
         DeselectAll();
         slotUIController.SetOutlineImage(selectedOutlineSprite_);
-        Debug.Log("Here");
     }
 
     private void InventoryHolder_Inventory_OnSlotAdded(InventorySlot slot)
