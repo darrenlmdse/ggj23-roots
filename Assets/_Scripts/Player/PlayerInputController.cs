@@ -174,6 +174,7 @@ public class PlayerInputController : MonoBehaviour
             if (Physics.Raycast(ray, out RaycastHit hit, 2))
             {
                 Vector3 testPlantPos = hit.transform.position;
+                Debug.Log("testPos: " + testPlantPos);
                 if (PlantManager.Instance.HasPlantHead(testPlantPos))
                 {
                     // cannot plant

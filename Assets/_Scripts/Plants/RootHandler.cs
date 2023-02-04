@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class RootHandler : MonoBehaviour
 {
-    [SerializeField] private GameObject plant;
-    [SerializeField] private float health = 20;
-    [SerializeField] private ElementalType element = ElementalType.Neutral;
+    [SerializeField]
+    private GameObject plant;
+
+    [SerializeField]
+    private float health = 20;
+
+    [SerializeField]
+    private ElementalType element = ElementalType.Neutral;
 
     public void TakeDamage(float damage)
     {
@@ -18,6 +23,7 @@ public class RootHandler : MonoBehaviour
         }
 
         PlantManager.Instance.RemoveRoot(transform);
+        PlantManager.Instance.RemovePlantPoint(plant.transform.position);
 
         // destroy plant
         Destroy(plant);
