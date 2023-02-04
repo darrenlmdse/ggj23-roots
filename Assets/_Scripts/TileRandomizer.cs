@@ -28,7 +28,7 @@ public class TileRandomizer : MonoBehaviour
 
                 rng = Random.Range(0, 4);
 
-                transform.GetChild(j).GetChild(i).localEulerAngles = new Vector3(90f, rng * 90f, 0f);
+                transform.GetChild(j).GetChild(i).localEulerAngles = new Vector3(-90f, rng * 90f, 0f);
             }
         }
     }
