@@ -18,10 +18,24 @@ public class PlantManager : MonoBehaviour
 
     [SerializeField] private Dictionary<PlantType, GameObject> plants;
 
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+
+        roots = new List<Transform>();
+    }
+
     public void PlantSeed(Vector3 plantPoint, PlantType p_plantType)
     {
-        Instantiate(plantPrefab, plantPoint, Quaternion.identity);
-        Instantiate(rootPrefab, plantPoint + GameSetupManager.Instance.Offset, Quaternion.identity);
+        Instantiate(plantPrefab, plantPoint, Quaternion.identity);        
+        
+        roots.Add(Instantiate(rootPrefab, plantPoint + GameSetupManager.Instance.Offset, Quaternion.identity).transform);
     }
 
     public Transform GetClosestRoot(Vector3 enemyPosition)
