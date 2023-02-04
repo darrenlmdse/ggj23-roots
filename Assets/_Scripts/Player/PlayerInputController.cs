@@ -1,4 +1,6 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterController))]
@@ -9,12 +11,18 @@ public class PlayerInputController : MonoBehaviour
     [SerializeField]
     private float playerSpeed = 2.0f;
 
+    [SerializeField] private Animator animator;
+    [SerializeField] private UnityEvent attackEvent;
+
     private CharacterController controller;
     private InteractionInstigator interactionInstigator;
     private InventoryHolder inventoryHolder;
     private Vector3 playerVelocity;
 
     private Vector2 movementInput = Vector2.zero;
+
+    private bool isMoving;
+    private bool isAttacking;
 
     private void Start()
     {
@@ -100,7 +108,26 @@ public class PlayerInputController : MonoBehaviour
 
         if (move != Vector3.zero)
         {
-            gameObject.transform.forward = move;
+            if (!isMoving)
+            {
+                isMoving = true;
+
+                if (!isAttacking)
+                {
+                    animator.CrossFade("Run", 0.1f);
+                }
+            }
+
+            //gameObject.transform.forward = move;
+        }
+        else if (isMoving)
+        {
+            isMoving = false;
+
+            if (!isAttacking)
+            {
+                animator.CrossFade("Idle", 0.1f);
+            }
         }
 
         controller.Move(playerVelocity * Time.deltaTime);
@@ -115,6 +142,7 @@ public class PlayerInputController : MonoBehaviour
     private void StartSecondaryActionPress()
     {
         Debug.Log(gameObject.name + " secondary action press");
+        StartCoroutine(WaitForAttackEnd());
     }
 
     private void StartPrimaryActionHold()
@@ -132,5 +160,15 @@ public class PlayerInputController : MonoBehaviour
     private void FinishPrimaryActionHold()
     {
         Debug.Log(gameObject.name + " finished primary action hold");
+    }
+
+    private IEnumerator WaitForAttackEnd()
+    {
+        isAttacking = true;
+        animator.CrossFade("Attack", 0.1f);
+        attackEvent?.Invoke();
+
+        yield return new WaitForSeconds(0.75f);
+        isAttacking = false;
     }
 }

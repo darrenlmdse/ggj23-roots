@@ -18,9 +18,9 @@ public class ScytheHandler : MonoBehaviour
 
     private bool isAttacking;
 
-    private void Update()
+    public void StartAttack()
     {
-        if (!Input.GetKeyDown(KeyCode.Backspace) || isAttacking)
+        if (isAttacking)
         {
             return;
         }
@@ -41,12 +41,12 @@ public class ScytheHandler : MonoBehaviour
         while (t < 1)
         {
             t += Time.deltaTime / attackDuration;
-            pivotTransform.eulerAngles = Vector3.Lerp(startRotation, endRotation, attackCurve.Evaluate(t));
+            pivotTransform.localEulerAngles = Vector3.Lerp(startRotation, endRotation, attackCurve.Evaluate(t));
 
             yield return null;
         }
 
-        pivotTransform.eulerAngles = startRotation;
+        pivotTransform.localEulerAngles = startRotation;
         damageCollider.enabled = false;
         trailRenderer.enabled = false;
         isAttacking = false;
