@@ -165,6 +165,11 @@ public class Cauldron : InteractableI
                 interactionChannel.RaisePotionBrewed(_player, newPotion);
                 Debug.Log("made potion: " + newPotion);
             }
+            else
+            {
+                Debug.Log("failed to make potion");
+            }
+            ClearAllIngredients();
             return;
         }
 
@@ -178,11 +183,14 @@ public class Cauldron : InteractableI
             return;
         }
 
-        TryAddIngredient(currentSlot.Item.ItemData as Ingredient);
+        if (TryAddIngredient(currentSlot.Item.ItemData as Ingredient))
+        {
+            FinishPrimaryInteractionImplement(_player);
+        }
     }
 
     protected override void FinishPrimaryInteractionImplement(GameObject _player)
     {
-        throw new System.NotImplementedException();
+        _player.GetComponent<InventoryHolder>().ClearCurrentSlot();
     }
 }

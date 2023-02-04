@@ -41,7 +41,7 @@ public class InventoryUIController : MonoBehaviour
             InventoryChannel_OnInventoryItemAddedToInventory;
         inventoryHolder_.OnInventoryItemSwtichedSlot -=
             InventoryChannel_OnInventoryItemSwtichedSlot;
-        inventoryHolder_.OnInventoryItemRemovalInitiated -=
+        inventoryHolder_.OnInventoryItemRemovedFromInventory -=
             InventoryChannel_OnInventoryItemRemovalInitiated;
         inventoryHolder_.OnInventoryItemSelected -= InventoryChannel_OnInventoryItemSelected;
         inventoryHolder_.Inventory.OnSlotAdded -= InventoryHolder_Inventory_OnSlotAdded;

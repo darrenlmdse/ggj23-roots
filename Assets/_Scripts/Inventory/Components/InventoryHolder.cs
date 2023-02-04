@@ -149,6 +149,13 @@ public class InventoryHolder : MonoBehaviour
         RaiseInventoryItemRemovedFromInventory(discardingSlot);
     }
 
+    public void ClearCurrentSlot()
+    {
+        RaiseInventoryItemRemovalInitiated(currentSelectedSlot);
+        currentSelectedSlot.Clear();
+        RaiseInventoryItemRemovedFromInventory(currentSelectedSlot);
+    }
+
     private void SelectSlot(int _index)
     {
         if (_index >= slotCounts)
