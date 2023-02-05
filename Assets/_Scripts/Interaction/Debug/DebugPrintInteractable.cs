@@ -36,16 +36,18 @@ public class DebugPrintInteractable : InteractableI
         Debug.Log(_player.gameObject.name + "finished primary press on" + gameObject.name);
     }
 
-    protected override void StartPrimaryActionHoldImpement(GameObject _player)
-    {
-        Debug.Log(_player.gameObject.name + "started primary hold on" + gameObject.name);
-        isHeld = true;
-    }
-
-    protected override void StopPrimaryActionHoldImplement(GameObject _player)
-    {
-        Debug.Log(_player.gameObject.name + "stopped primary hold on" + gameObject.name);
-        Debug.Log("held for " + heldTime);
-        isHeld = false;
-    }
+    /*
+        protected override void StartPrimaryActionHoldImpement(GameObject _player)
+        {
+            Debug.Log(_player.gameObject.name + "started primary hold on" + gameObject.name);
+            isHeld = true;
+        }
+    
+        protected override void StopPrimaryActionHoldImplement(GameObject _player)
+        {
+            Debug.Log(_player.gameObject.name + "stopped primary hold on" + gameObject.name);
+            Debug.Log("held for " + heldTime);
+            isHeld = false;
+        }
+        */
 }

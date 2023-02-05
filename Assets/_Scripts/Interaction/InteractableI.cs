@@ -15,16 +15,18 @@ public abstract class InteractableI : MonoBehaviour
     protected abstract void StartPrimaryInteractionImplement(GameObject _player);
     protected abstract void FinishPrimaryInteractionImplement(GameObject _player);
 
-    public void StartPrimaryActionHold(GameObject _player)
-    {
-        StartPrimaryActionHoldImpement(_player);
-    }
-
-    public void StopPrimaryActionHold(GameObject _player)
-    {
-        StopPrimaryActionHoldImplement(_player);
-    }
-
-    protected abstract void StartPrimaryActionHoldImpement(GameObject _player);
-    protected abstract void StopPrimaryActionHoldImplement(GameObject _player);
+    /*
+        public void StartPrimaryActionHold(GameObject _player)
+        {
+            StartPrimaryActionHoldImpement(_player);
+        }
+    
+        public void StopPrimaryActionHold(GameObject _player)
+        {
+            StopPrimaryActionHoldImplement(_player);
+        }
+    
+        protected abstract void StartPrimaryActionHoldImpement(GameObject _player);
+        protected abstract void StopPrimaryActionHoldImplement(GameObject _player);
+        */
 }

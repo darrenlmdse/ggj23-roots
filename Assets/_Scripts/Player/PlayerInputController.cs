@@ -69,7 +69,6 @@ public class PlayerInputController : MonoBehaviour
     public void OnAction1Hold(InputAction.CallbackContext _context)
     {
         /*
-        // TODO(darren): implement.
         _context.action.started += context =>
         {
             StartPrimaryActionHold();
@@ -161,7 +160,7 @@ public class PlayerInputController : MonoBehaviour
 
     private void StartPrimaryActionPress()
     {
-        Debug.Log(gameObject.name + " primary action press");
+        //Debug.Log(gameObject.name + " primary action press");
         InventorySlot currentEquip = inventoryHolder.CurrentSelectedSlot;
         if (interactionInstigator.StartPrimaryActionPress())
         {
@@ -174,7 +173,6 @@ public class PlayerInputController : MonoBehaviour
             if (Physics.Raycast(ray, out RaycastHit hit, 2))
             {
                 Vector3 testPlantPos = hit.transform.position;
-                Debug.Log("testPos: " + testPlantPos);
                 if (PlantManager.Instance.HasPlantHead(testPlantPos))
                 {
                     // cannot plant
@@ -194,25 +192,25 @@ public class PlayerInputController : MonoBehaviour
 
     private void StartSecondaryActionPress()
     {
-        Debug.Log(gameObject.name + " secondary action press");
+        //Debug.Log(gameObject.name + " secondary action press");
         StartCoroutine(WaitForAttackEnd());
     }
 
     private void StartPrimaryActionHold()
     {
-        Debug.Log(gameObject.name + " started primary action hold");
+        //Debug.Log(gameObject.name + " started primary action hold");
         interactionInstigator.StartPrimaryActionHold();
     }
 
     private void StopPrimaryActionHold()
     {
-        Debug.Log(gameObject.name + " stopped primary action hold");
+        //Debug.Log(gameObject.name + " stopped primary action hold");
         interactionInstigator.StopPrimaryActionHold();
     }
 
     private void FinishPrimaryActionHold()
     {
-        Debug.Log(gameObject.name + " finished primary action hold");
+        //Debug.Log(gameObject.name + " finished primary action hold");
     }
 
     private IEnumerator WaitForAttackEnd()

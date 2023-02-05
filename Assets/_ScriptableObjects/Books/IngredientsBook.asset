@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47092128bb1f97d4a94ea70c88d5d675, type: 3}
+  m_Name: IngredientsBook
+  m_EditorClassIdentifier: 
+  CabbageFire: {fileID: 11400000, guid: 02c4d441055170040bb72a7be18bde20, type: 2}
+  CabbageLeaf: {fileID: 11400000, guid: 0f779ca477cc6af4898a3130b9d8c46c, type: 2}
+  CabbageNeutral: {fileID: 11400000, guid: 368342121c08d3c4dacd4eb01258bb6c, type: 2}
+  CabbageWater: {fileID: 11400000, guid: 43ef0999e298a7b45918a653d4c43c96, type: 2}
+  CarrotFire: {fileID: 11400000, guid: 3a86fa945ee2826488a0529e468d26ad, type: 2}
+  CarrotLeaf: {fileID: 11400000, guid: ac0110156704c4646adf46c43f70071d, type: 2}
+  CarrotNeutral: {fileID: 11400000, guid: 67ca579073b18584db83bf6c9a9d42f4, type: 2}
+  CarrotWater: {fileID: 11400000, guid: c44bddeee28f5f340a89292d159a20d8, type: 2}
+  EggplantFire: {fileID: 11400000, guid: bbd59ae45f9ac244895354f4fb87a0dd, type: 2}
+  EggplantLeaf: {fileID: 11400000, guid: c66ba684f2c4a1e4c8c271612698c52e, type: 2}
+  EggplantNeutral: {fileID: 11400000, guid: 89a5ad6d1a3546c4bb5c100d7f6fe87d, type: 2}
+  EggplantWater: {fileID: 11400000, guid: 748432f94f5775c419984baccdf1b0ce, type: 2}
