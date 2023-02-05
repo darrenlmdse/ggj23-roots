@@ -102,7 +102,8 @@ public class InventoryUIController : MonoBehaviour
                 dynamicSlotsHolder_.transform
             )
             .GetComponent<InventorySlotUIController>();
-        newSlotUI.SetOutlineImage(normalOutlineSprite_);
+        //newSlotUI.SetOutlineImage(normalOutlineSprite_);
+        newSlotUI.DisableOutline();
         newSlotUI.SetIconImage(null);
     }
 
@@ -122,7 +123,7 @@ public class InventoryUIController : MonoBehaviour
     {
         foreach (Transform t in dynamicSlotsHolder_.transform)
         {
-            t.GetComponent<InventorySlotUIController>().SetOutlineImage(normalOutlineSprite_);
+            t.GetComponent<InventorySlotUIController>().DisableOutline();
         }
     }
 }
