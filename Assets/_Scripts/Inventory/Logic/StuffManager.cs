@@ -17,6 +17,12 @@ public class StuffManager : MonoBehaviour
     [SerializeField]
     private GameObject pickupPrefab;
 
+    [SerializeField]
+    private AudioSource audioSource;
+
+    [SerializeField]
+    private AudioClip pickupClip;
+
     private void Start()
     {
         interactionChannel.OnPickupInteracted += InteractionChannel_OnPickupInteracted;
@@ -66,6 +72,8 @@ public class StuffManager : MonoBehaviour
 
             _pu.FinishPrimaryInteraction(_player);
             interactionChannel.RaisePickupCollected(_player, _pu);
+
+            audioSource.PlayOneShot(pickupClip);
         }
     }
 

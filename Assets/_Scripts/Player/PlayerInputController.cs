@@ -138,6 +138,7 @@ public class PlayerInputController : MonoBehaviour
                 )
                 {
                     inventoryHolder.ClearCurrentSlot();
+                    // TODO: Play potion sound here
                 }
             }
         };

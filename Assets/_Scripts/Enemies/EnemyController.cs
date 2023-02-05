@@ -34,8 +34,19 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     private CombatChannel combatChannel;
 
+    [SerializeField]
+    private AudioSource audioSource;
+
+    [SerializeField]
+    private AudioClip squelchClip;
+
+    [SerializeField]
+    private AudioClip munchClip;
+
     private Quaternion baseSpriteRotation;
     private RootHandler targetRoot;
+
+    private bool isMunching;
 
     public ElementalType Element
     {
@@ -67,6 +78,14 @@ public class EnemyController : MonoBehaviour
 
     private void FindRoot()
     {
+        if (isMunching)
+        {
+            isMunching = false;
+            audioSource.Stop();
+            audioSource.clip = squelchClip;
+            audioSource.Play();
+        }
+
         Transform closestRoot = PlantManager.Instance.GetClosestRoot(transform.position);
 
         if (closestRoot != null)
@@ -224,6 +243,14 @@ public class EnemyController : MonoBehaviour
 
     private IEnumerator EatRoot()
     {
+        if (!isMunching)
+        {
+            isMunching = true;
+            audioSource.Stop();
+            audioSource.clip = munchClip;
+            audioSource.Play();
+        }
+
         yield return new WaitForSeconds(damageInterval);
 
         if (targetRoot != null)
