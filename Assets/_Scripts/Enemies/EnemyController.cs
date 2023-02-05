@@ -6,14 +6,33 @@ using UnityEngine.AI;
 public class EnemyController : MonoBehaviour
 {
     private NavMeshAgent agent;
-    [SerializeField] private float health = 5;
-    [SerializeField] private ElementalType element;
-    [SerializeField] private Transform spriteTransform;
-    [SerializeField] private float damage;
-    [SerializeField] private float damageInterval;
-    [SerializeField] private AnimationCurve damageIndicatorCurve;
-    [SerializeField] private float damageIndicatorInterval;
-    [SerializeField] private Sprite[] sprites;
+
+    [SerializeField]
+    private float health = 5;
+
+    [SerializeField]
+    private ElementalType element;
+
+    [SerializeField]
+    private Transform spriteTransform;
+
+    [SerializeField]
+    private float damage;
+
+    [SerializeField]
+    private float damageInterval;
+
+    [SerializeField]
+    private AnimationCurve damageIndicatorCurve;
+
+    [SerializeField]
+    private float damageIndicatorInterval;
+
+    [SerializeField]
+    private Sprite[] sprites;
+
+    [SerializeField]
+    private CombatChannel combatChannel;
 
     private Quaternion baseSpriteRotation;
     private RootHandler targetRoot;
@@ -38,6 +57,12 @@ public class EnemyController : MonoBehaviour
     private void Start()
     {
         FindRoot();
+        combatChannel.OnRootAttacked += CombatChannel_OnRootAttacked;
+    }
+
+    private void OnDestroy()
+    {
+        combatChannel.OnRootAttacked -= CombatChannel_OnRootAttacked;
     }
 
     private void FindRoot()
@@ -156,15 +181,19 @@ public class EnemyController : MonoBehaviour
                 break;
         }
 
+        HealthCheck(startingHealth);
+    }
+
+    private void HealthCheck(float startingHealth)
+    {
         if (health <= 0)
         {
-            // TODO: Leave a corpse behind here
+            combatChannel.RaiseSlimeKilled(transform.position, element);
             Destroy(gameObject);
         }
 
         if (startingHealth != health)
         {
-
             StopCoroutine(IndicateDamageTaken());
             StartCoroutine(IndicateDamageTaken());
         }
@@ -176,7 +205,7 @@ public class EnemyController : MonoBehaviour
 
         SpriteRenderer sprite = spriteTransform.GetComponent<SpriteRenderer>();
         Color colour = sprite.color;
-         
+
         while (t < 1)
         {
             t += Time.deltaTime / damageIndicatorInterval;
@@ -205,6 +234,16 @@ public class EnemyController : MonoBehaviour
         else
         {
             FindRoot();
+        }
+    }
+
+    private void CombatChannel_OnRootAttacked(RootHandler root)
+    {
+        if (targetRoot != null && targetRoot == root)
+        {
+            float startingHealth = health;
+            health -= 1;
+            HealthCheck(startingHealth);
         }
     }
 }

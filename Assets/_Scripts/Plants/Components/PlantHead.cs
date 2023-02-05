@@ -19,6 +19,9 @@ public class PlantHead : InteractableI
     [SerializeField]
     private InteractionChannel interactionChannel;
 
+    [SerializeField]
+    private CombatChannel combatChannel;
+
     private float growthTimeS = 5f;
 
     private float healPotionEffect = 5f;
@@ -97,6 +100,7 @@ public class PlantHead : InteractableI
 
     protected override void StartPrimaryInteractionImplement(GameObject _player)
     {
+        // either harvest
         if (IsFullyGrowth())
         {
             interactionChannel.RaisePlantHarvested(
@@ -108,6 +112,7 @@ public class PlantHead : InteractableI
             return;
         }
 
+        // or put potion in if available
         InventorySlot currentSlot = _player.GetComponent<InventoryHolder>().CurrentSelectedSlot;
         if (
             currentSlot == null
@@ -138,8 +143,7 @@ public class PlantHead : InteractableI
                 return true;
 
             case BuffType.Attack:
-                // TODO(darren): implement.
-                // damage enemies around roots
+                combatChannel.RaiseRootAttacked(root);
                 return true;
 
             case BuffType.Speed:

@@ -48,12 +48,4 @@ public class InteractionChannel : ScriptableObject
     {
         OnPlantHarvested?.Invoke(plantPos, ingredient);
     }
-
-    public delegate void SlimeCallback(Vector3 deadPos, SlimePart slimePart);
-    public SlimeCallback OnSlimeKilled;
-
-    public void RaiseSlimeKilled(Vector3 deadPos, SlimePart slimePart)
-    {
-        OnSlimeKilled?.Invoke(deadPos, slimePart);
-    }
 }

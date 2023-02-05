@@ -9,6 +9,12 @@ public class StuffManager : MonoBehaviour
     private InteractionChannel interactionChannel;
 
     [SerializeField]
+    private CombatChannel combatChannel;
+
+    [SerializeField]
+    private SlimeBook slimeBook;
+
+    [SerializeField]
     private GameObject pickupPrefab;
 
     private void Start()
@@ -16,8 +22,9 @@ public class StuffManager : MonoBehaviour
         interactionChannel.OnPickupInteracted += InteractionChannel_OnPickupInteracted;
         interactionChannel.OnInventoryItemDiscarded += InteractionChannel_OnInventoryItemDiscarded;
         interactionChannel.OnPotionBrewed += InteractionChannel_OnPotionBrewed;
-
         interactionChannel.OnPlantHarvested += InteractionChannel_OnPlantHarvested;
+
+        combatChannel.OnSlimeKilled += CombatChannel_OnSlimeKilled;
     }
 
     private void OnDestroy()
@@ -25,8 +32,9 @@ public class StuffManager : MonoBehaviour
         interactionChannel.OnPickupInteracted -= InteractionChannel_OnPickupInteracted;
         interactionChannel.OnInventoryItemDiscarded -= InteractionChannel_OnInventoryItemDiscarded;
         interactionChannel.OnPotionBrewed -= InteractionChannel_OnPotionBrewed;
-
         interactionChannel.OnPlantHarvested -= InteractionChannel_OnPlantHarvested;
+
+        combatChannel.OnSlimeKilled -= CombatChannel_OnSlimeKilled;
     }
 
     private void InteractionChannel_OnInventoryItemDiscarded(
@@ -92,5 +100,17 @@ public class StuffManager : MonoBehaviour
 
             sign *= -1;
         }
+    }
+
+    private void CombatChannel_OnSlimeKilled(Vector3 pos, ElementalType type)
+    {
+        PickupItemWrapper newPickup = Instantiate(
+                pickupPrefab,
+                pos + new Vector3(0f, 0.3f, -0.1f),
+                Quaternion.identity
+            )
+            .GetComponent<PickupItemWrapper>();
+        newPickup.SetData(slimeBook.GetSlime(type));
+        newPickup.SetType(ItemType.Potion);
     }
 }

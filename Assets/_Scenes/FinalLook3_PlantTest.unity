@@ -23592,6 +23592,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionChannel: {fileID: 11400000, guid: c4bc529ed20e13142a6bd7cfd28b9f46, type: 2}
+  combatChannel: {fileID: 11400000, guid: c5d0cfcf5b5cf6e49a413e8c83c8d7fa, type: 2}
+  slimeBook: {fileID: 11400000, guid: 4df78e24b1dcdda45900673b82186acf, type: 2}
   pickupPrefab: {fileID: 684478814039863712, guid: c4ecedaf1d22de34db57da72edf6b6db, type: 3}
 --- !u!1001 &552013978
 PrefabInstance:
@@ -81181,6 +81183,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   damageIndicatorInterval: 0
   sprites: []
+  combatChannel: {fileID: 0}
 --- !u!195 &1986490451
 NavMeshAgent:
   m_ObjectHideFlags: 0
