@@ -58,7 +58,6 @@ public class Cauldron : InteractableI
             buff = BuffType.Attack;
         }
 
-        // TODO(darren): implement
         if (fire == water && fire == leaf)
         {
             return MakePotionData(ElementalType.Neutral, buff);
@@ -173,7 +172,7 @@ public class Cauldron : InteractableI
 
         if (TryAddIngredient(currentSlot.Item.ItemData as Ingredient))
         {
-            FinishPrimaryInteractionImplement(_player);
+            FinishPrimaryInteraction(_player);
         }
     }
 
