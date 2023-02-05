@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: WaterSlimePart
   m_EditorClassIdentifier: 
   elementalType: 3
-  sprite: {fileID: 21300000, guid: 94dd9f9cd0457f649b1eef7b9f4421f4, type: 3}
+  sprite: {fileID: 21300000, guid: 05b0384630bdf2743a07da4e51922911, type: 3}
