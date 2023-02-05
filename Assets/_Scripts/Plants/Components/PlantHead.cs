@@ -6,6 +6,7 @@ public class PlantHead : InteractableI
 {
     [SerializeField]
     private RootHandler root;
+    public RootHandler Root => root;
 
     [SerializeField]
     private SpriteRenderer topSpriteRenderer;
@@ -156,6 +157,6 @@ public class PlantHead : InteractableI
 
     public void SignalPlantDestroyed()
     {
-        combatChannel.RaiseRootAttacked(root);
+        combatChannel.RaiseRootDestroyed(this);
     }
 }

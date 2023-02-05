@@ -15,4 +15,4 @@ MonoBehaviour:
   displayName: Attack (Neutral)
   elementType: 3
   buffType: 2
-  sprite: {fileID: 21300000, guid: 3aca91bfb549b6e43b30bc2c8a8364df, type: 3}
+  sprite: {fileID: 21300000, guid: 531734f5eaa333e45b35c07597d56397, type: 3}

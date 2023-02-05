@@ -135,11 +135,16 @@ public class InteractionInstigator : MonoBehaviour
         return interactableId;
     }
 
-    private void CombatChannel_OnRootDestroyed(RootHandler root)
+    private void CombatChannel_OnRootDestroyed(PlantHead head)
     {
-        if (nearbyInteractables.Contains(root))
+        if (nearbyInteractables.Contains(head.Root))
         {
-            nearbyInteractables.Remove(root);
+            nearbyInteractables.Remove(head.Root);
+        }
+
+        if (nearbyInteractables.Contains(head))
+        {
+            nearbyInteractables.Remove(head);
         }
     }
 }

@@ -15,4 +15,4 @@ MonoBehaviour:
   displayName: Attack (Fire)
   elementType: 1
   buffType: 2
-  sprite: {fileID: 21300000, guid: 86cd4eda222abce4b8bda1e2e2107f48, type: 3}
+  sprite: {fileID: 21300000, guid: 97ab5440038001241830dc1344d502c7, type: 3}
