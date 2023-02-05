@@ -20,6 +20,11 @@ public class PickupItemWrapper : InteractableI
 
     private void Start()
     {
+        RenderSprite();
+    }
+
+    private void RenderSprite()
+    {
         switch (type)
         {
             case ItemType.Potion:
@@ -55,11 +60,13 @@ public class PickupItemWrapper : InteractableI
     public void SetData(ScriptableObject _data)
     {
         pickupData = _data;
+        RenderSprite();
     }
 
     public void SetType(ItemType _type)
     {
         type = _type;
+        RenderSprite();
     }
 
     protected override void StartPrimaryActionHoldImpement(GameObject _player)

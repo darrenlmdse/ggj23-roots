@@ -2077,6 +2077,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bunny
       objectReference: {fileID: 0}
+    - target: {fileID: 7674340745465064535, guid: a79be8332db810843b967ecd4a5d644f, type: 3}
+      propertyPath: m_DefaultControlScheme
+      value: Keyboard1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a79be8332db810843b967ecd4a5d644f, type: 3}
 --- !u!4 &49897332 stripped

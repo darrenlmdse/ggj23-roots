@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 059554210605e76498770240593323ae, type: 3}
   m_Name: Test_Ingredient1
   m_EditorClassIdentifier: 
-  plantType: 0
+  plantType: 1
   elementType: 2
   sprite: {fileID: 21300000, guid: 732001ba6f78f6d4d8537437d65b8ad1, type: 3}

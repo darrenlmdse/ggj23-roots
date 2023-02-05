@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: PotionBook
   m_EditorClassIdentifier: 
   kHealthNeutralPotion: {fileID: 11400000, guid: 7e6a89bf8b0c87341b882a17bc1ef707, type: 2}
-  kHealthFirePotion: {fileID: 0}
-  kHealthLeafPotion: {fileID: 0}
-  kHealthWaterPotion: {fileID: 0}
-  kSpeedNeutralPotion: {fileID: 0}
-  kSpeedFirePotion: {fileID: 0}
-  kSpeedLeafPotion: {fileID: 0}
-  kSpeedWaterPotion: {fileID: 0}
-  kAttackNeutralPotion: {fileID: 0}
-  kAttackFirePotion: {fileID: 0}
-  kAttackLeafPotion: {fileID: 0}
-  kAttackWaterPotion: {fileID: 0}
+  kHealthFirePotion: {fileID: 11400000, guid: d4ca3f1a46e04a74e8d1119a8724fa4a, type: 2}
+  kHealthLeafPotion: {fileID: 11400000, guid: 154fb9558c64d6a4bb1d2abbca5f5dbd, type: 2}
+  kHealthWaterPotion: {fileID: 11400000, guid: 632d4ed49ebc2f54fb38a1e3d360deaa, type: 2}
+  kSpeedNeutralPotion: {fileID: 11400000, guid: 9fe7e5fc8aa96d34b9951e6d370e4443, type: 2}
+  kSpeedFirePotion: {fileID: 11400000, guid: 91b84a53e971d7b42bb455724bbf52d9, type: 2}
+  kSpeedLeafPotion: {fileID: 11400000, guid: 7167c34c86d08ed419fe057d02002317, type: 2}
+  kSpeedWaterPotion: {fileID: 11400000, guid: 4aa96c7a3a500f2429e39441b3adc9a1, type: 2}
+  kAttackNeutralPotion: {fileID: 11400000, guid: fa9c934e1b50a91489a5b6dcd59313cb, type: 2}
+  kAttackFirePotion: {fileID: 11400000, guid: f048f6eaba68b4a4ba3a21fb6ae2a183, type: 2}
+  kAttackLeafPotion: {fileID: 11400000, guid: 00bf6ef885cfe4940acb826bc30d818b, type: 2}
+  kAttackWaterPotion: {fileID: 11400000, guid: 6e0188526f130534e84447a58b3cecc2, type: 2}
