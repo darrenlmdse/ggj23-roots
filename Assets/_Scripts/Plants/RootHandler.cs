@@ -34,6 +34,7 @@ public class RootHandler : InteractableI
 
     [SerializeField]
     private Vector3 squishScaleStart;
+
     [SerializeField]
     private Vector3 squishScaleEnd;
 
@@ -69,6 +70,7 @@ public class RootHandler : InteractableI
     // root is responsible for this so Head should call root
     public void DestroyThisPlant()
     {
+        head.SignalPlantDestroyed();
         PlantManager.Instance.RemoveRoot(transform);
         PlantManager.Instance.RemovePlantPoint(plant.transform.position);
 
@@ -114,6 +116,7 @@ public class RootHandler : InteractableI
         if (element == ElementalType.Neutral)
         {
             element = slimePart.ElementalType;
+            FertilizeWithSlime(element);
             head.SetSlime(element);
             return true;
         }
@@ -122,7 +125,7 @@ public class RootHandler : InteractableI
             return false;
         }
     }
-            
+
     [Button]
     public void FertilizeWithSlime(ElementalType slimeElement)
     {
@@ -167,7 +170,11 @@ public class RootHandler : InteractableI
         {
             t += Time.deltaTime / squishDuration;
 
-            plantSpriteTransform.localScale = Vector3.Lerp(squishScaleStart, squishScaleEnd, squishCurve.Evaluate(t));
+            plantSpriteTransform.localScale = Vector3.Lerp(
+                squishScaleStart,
+                squishScaleEnd,
+                squishCurve.Evaluate(t)
+            );
 
             yield return null;
         }

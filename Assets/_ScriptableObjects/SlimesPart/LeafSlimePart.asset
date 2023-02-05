@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: LeafSlimePart
   m_EditorClassIdentifier: 
   elementalType: 2
-  sprite: {fileID: 21300000, guid: 4b68e67c6f7ac6148aff61d180a1f157, type: 3}
+  sprite: {fileID: 21300000, guid: 1e624ab07ee4a6248adfb410bc7f6685, type: 3}
