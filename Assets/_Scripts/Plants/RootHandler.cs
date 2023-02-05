@@ -44,6 +44,8 @@ public class RootHandler : InteractableI
     [SerializeField]
     private AnimationCurve squishCurve;
 
+    [SerializeField] private SpriteRenderer[] rootVariants;
+
     private float timeElapsed;
     private Color colour;
 
@@ -52,6 +54,20 @@ public class RootHandler : InteractableI
         colour = Color.white;
         spotlight.material.color = colour;
         //spotlight.material.SetColor("_EMISSION", colour);
+
+        int rng = Random.Range(0, rootVariants.Length);
+
+        rootVariants[rng].enabled = true;
+
+        // root offsets break the following code
+        //int rng2 = Random.Range(0, 2);
+
+        //if (rng2 > 0)
+        //{
+        //    Vector3 scale = rootVariants[rng].transform.localScale;
+        //    scale.x *= -1;
+        //    rootVariants[rng].transform.localScale = scale;
+        //}
     }
 
     public void TakeDamage(float damage)

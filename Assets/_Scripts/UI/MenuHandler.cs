@@ -11,9 +11,17 @@ public class MenuHandler : MonoBehaviour
     private GameObject PauseMenu;
     [SerializeField]
     private GameObject ControlsMenu;
+    [SerializeField]
+    private GameObject WinScreen;
+    [SerializeField]
+    private GameObject LoseScreen;
+
+    public static MenuHandler Instance;
 
     private void Awake()
     {
+        Instance = this;
+
         Pause();
         MainMenu.SetActive(true);
         PauseMenu.SetActive(false);
@@ -62,5 +70,16 @@ public class MenuHandler : MonoBehaviour
                 Play();
             }
         }
+    }
+
+    public void Win()
+    {
+        Pause();
+        WinScreen.SetActive(true);
+    }
+
+    public void Lose()
+    {
+
     }
 }
