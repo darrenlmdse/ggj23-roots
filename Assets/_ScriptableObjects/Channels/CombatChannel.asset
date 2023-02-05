@@ -9,8 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5eb5ad5e25eda242aea978b19e34e9e, type: 3}
-  m_Name: WaterSlimePart
+  m_Script: {fileID: 11500000, guid: d24d47ac745459f43a39c350a95e2b48, type: 3}
+  m_Name: CombatChannel
   m_EditorClassIdentifier: 
-  elementalType: 3
-  sprite: {fileID: 21300000, guid: 05b0384630bdf2743a07da4e51922911, type: 3}

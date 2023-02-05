@@ -4,6 +4,9 @@ using System;
 
 public class InteractionInstigator : MonoBehaviour
 {
+    [SerializeField]
+    private CombatChannel combatChannel;
+
     private List<InteractableI> nearbyInteractables;
     private bool isInteractionEnabled;
 
@@ -11,6 +14,16 @@ public class InteractionInstigator : MonoBehaviour
     {
         nearbyInteractables = new List<InteractableI>();
         EnableInteraction();
+    }
+
+    private void Start()
+    {
+        combatChannel.OnRootDestroyed += CombatChannel_OnRootDestroyed;
+    }
+
+    private void OnDestroy()
+    {
+        combatChannel.OnRootDestroyed -= CombatChannel_OnRootDestroyed;
     }
 
     public bool StartPrimaryActionPress()
@@ -120,5 +133,13 @@ public class InteractionInstigator : MonoBehaviour
             }
         }
         return interactableId;
+    }
+
+    private void CombatChannel_OnRootDestroyed(RootHandler root)
+    {
+        if (nearbyInteractables.Contains(root))
+        {
+            nearbyInteractables.Remove(root);
+        }
     }
 }
