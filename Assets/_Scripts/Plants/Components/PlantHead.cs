@@ -153,4 +153,9 @@ public class PlantHead : InteractableI
 
         return false;
     }
+
+    public void SignalPlantDestroyed()
+    {
+        combatChannel.RaiseRootAttacked(root);
+    }
 }

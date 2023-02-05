@@ -5,11 +5,11 @@ using UnityEngine;
 public class PickupItemWrapper : InteractableI
 {
     [SerializeField]
-    private ScriptableObject pickupData;
+    private ScriptableObject pickupData = null;
     public ScriptableObject PickupData => pickupData;
 
     [SerializeField]
-    private ItemType type;
+    private ItemType type = ItemType.Empty;
     public ItemType Type => type;
 
     [SerializeField]
@@ -25,6 +25,11 @@ public class PickupItemWrapper : InteractableI
 
     private void RenderSprite()
     {
+        if (pickupData == null || type == ItemType.Empty)
+        {
+            return;
+        }
+
         switch (type)
         {
             case ItemType.Potion:

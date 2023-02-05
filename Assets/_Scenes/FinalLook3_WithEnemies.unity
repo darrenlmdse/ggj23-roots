@@ -2273,18 +2273,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1467876657}
     m_Modifications:
-    - target: {fileID: 2329209349957807506, guid: a79be8332db810843b967ecd4a5d644f, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2329209349957807506, guid: a79be8332db810843b967ecd4a5d644f, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2329209349957807506, guid: a79be8332db810843b967ecd4a5d644f, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.1
-      objectReference: {fileID: 0}
     - target: {fileID: 7674340745465064524, guid: a79be8332db810843b967ecd4a5d644f, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -2332,22 +2320,6 @@ PrefabInstance:
     - target: {fileID: 7674340745465064525, guid: a79be8332db810843b967ecd4a5d644f, type: 3}
       propertyPath: m_Name
       value: Bunny
-      objectReference: {fileID: 0}
-    - target: {fileID: 7674340745465064531, guid: a79be8332db810843b967ecd4a5d644f, type: 3}
-      propertyPath: m_Constraints
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7674340745465064535, guid: a79be8332db810843b967ecd4a5d644f, type: 3}
-      propertyPath: m_DefaultControlScheme
-      value: Keyboard1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7674340745801828624, guid: a79be8332db810843b967ecd4a5d644f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7674340745870796497, guid: a79be8332db810843b967ecd4a5d644f, type: 3}
-      propertyPath: element
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a79be8332db810843b967ecd4a5d644f, type: 3}

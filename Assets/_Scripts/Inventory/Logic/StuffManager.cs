@@ -111,6 +111,6 @@ public class StuffManager : MonoBehaviour
             )
             .GetComponent<PickupItemWrapper>();
         newPickup.SetData(slimeBook.GetSlime(type));
-        newPickup.SetType(ItemType.Potion);
+        newPickup.SetType(ItemType.Slime);
     }
 }

@@ -2117,6 +2117,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bunny
       objectReference: {fileID: 0}
+    - target: {fileID: 7674340745465064533, guid: a79be8332db810843b967ecd4a5d644f, type: 3}
+      propertyPath: combatChannel
+      value: 
+      objectReference: {fileID: 11400000, guid: c5d0cfcf5b5cf6e49a413e8c83c8d7fa, type: 2}
     - target: {fileID: 7674340745465064535, guid: a79be8332db810843b967ecd4a5d644f, type: 3}
       propertyPath: m_DefaultControlScheme
       value: Keyboard1
@@ -14756,6 +14760,10 @@ PrefabInstance:
       value: Pickupable (1)
       objectReference: {fileID: 0}
     - target: {fileID: 684478814039863713, guid: c4ecedaf1d22de34db57da72edf6b6db, type: 3}
+      propertyPath: type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 684478814039863713, guid: c4ecedaf1d22de34db57da72edf6b6db, type: 3}
       propertyPath: pickupData
       value: 
       objectReference: {fileID: 11400000, guid: 6cdc142d46e1a1546ab4a6afc3be886d, type: 2}
@@ -25383,6 +25391,10 @@ PrefabInstance:
       value: Pickupable (2)
       objectReference: {fileID: 0}
     - target: {fileID: 684478814039863713, guid: c4ecedaf1d22de34db57da72edf6b6db, type: 3}
+      propertyPath: type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 684478814039863713, guid: c4ecedaf1d22de34db57da72edf6b6db, type: 3}
       propertyPath: pickupData
       value: 
       objectReference: {fileID: 11400000, guid: 9fc8fca9ae04a6f4390aecd2a8d63042, type: 2}
@@ -28350,6 +28362,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pickupable
       objectReference: {fileID: 0}
+    - target: {fileID: 684478814039863713, guid: c4ecedaf1d22de34db57da72edf6b6db, type: 3}
+      propertyPath: type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 684478814039863713, guid: c4ecedaf1d22de34db57da72edf6b6db, type: 3}
+      propertyPath: pickupData
+      value: 
+      objectReference: {fileID: 11400000, guid: bcf1dea47a9624941bac1677733e4279, type: 2}
     - target: {fileID: 684478814039863726, guid: c4ecedaf1d22de34db57da72edf6b6db, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -47340,6 +47360,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7983738884767889720, guid: 59806e7b2d42020458ab1de273861e79, type: 3}
+      propertyPath: m_DefaultControlScheme
+      value: Controller
+      objectReference: {fileID: 0}
+    - target: {fileID: 7983738884767889722, guid: 59806e7b2d42020458ab1de273861e79, type: 3}
+      propertyPath: combatChannel
+      value: 
+      objectReference: {fileID: 11400000, guid: c5d0cfcf5b5cf6e49a413e8c83c8d7fa, type: 2}
     - target: {fileID: 7983738884767889723, guid: 59806e7b2d42020458ab1de273861e79, type: 3}
       propertyPath: m_Radius
       value: 0.4
