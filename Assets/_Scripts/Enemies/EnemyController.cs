@@ -8,7 +8,7 @@ public class EnemyController : MonoBehaviour
     private NavMeshAgent agent;
 
     [SerializeField]
-    private float health = 5;
+    private float health = 4;
 
     [SerializeField]
     private ElementalType element;
@@ -44,7 +44,7 @@ public class EnemyController : MonoBehaviour
             element = value;
 
             SpriteRenderer sprite = spriteTransform.GetComponent<SpriteRenderer>();
-            sprite.sprite = sprites[(int)element-1];
+            sprite.sprite = sprites[(int)element - 1];
         }
     }
 
@@ -121,19 +121,19 @@ public class EnemyController : MonoBehaviour
                 switch (scythe.Element)
                 {
                     case ElementalType.Neutral:
-                        health -= scythe.Damage;
+                        health -= scythe.GetDamage();
                         break;
 
                     case ElementalType.Water:
-                        health -= scythe.Damage / 2;
+                        health -= scythe.GetDamage();
                         break;
 
                     case ElementalType.Leaf:
-                        health -= scythe.Damage * 2;
+                        health -= scythe.GetDamage() * 2;
                         break;
 
                     case ElementalType.Fire:
-                        health -= 0;
+                        health -= scythe.GetDamage() / 2;
                         break;
                 }
                 break;
@@ -142,19 +142,19 @@ public class EnemyController : MonoBehaviour
                 switch (scythe.Element)
                 {
                     case ElementalType.Neutral:
-                        health -= scythe.Damage;
+                        health -= scythe.GetDamage();
                         break;
 
                     case ElementalType.Water:
-                        health -= 0;
+                        health -= scythe.GetDamage() / 2;
                         break;
 
                     case ElementalType.Leaf:
-                        health -= scythe.Damage / 2;
+                        health -= scythe.GetDamage();
                         break;
 
                     case ElementalType.Fire:
-                        health -= scythe.Damage * 2;
+                        health -= scythe.GetDamage() * 2;
                         break;
                 }
                 break;
@@ -163,19 +163,19 @@ public class EnemyController : MonoBehaviour
                 switch (scythe.Element)
                 {
                     case ElementalType.Neutral:
-                        health -= scythe.Damage;
+                        health -= scythe.GetDamage();
                         break;
 
                     case ElementalType.Water:
-                        health -= scythe.Damage * 2;
+                        health -= scythe.GetDamage() * 2;
                         break;
 
                     case ElementalType.Leaf:
-                        health -= 0;
+                        health -= scythe.GetDamage() / 2;
                         break;
 
                     case ElementalType.Fire:
-                        health -= scythe.Damage / 2;
+                        health -= scythe.GetDamage();
                         break;
                 }
                 break;

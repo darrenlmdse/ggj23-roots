@@ -5,18 +5,32 @@ using static EnemyController;
 
 public class ScytheHandler : MonoBehaviour
 {
-    [SerializeField] private float damage;
-    [SerializeField] private ElementalType element;
-    [SerializeField] private float attackDuration;
-    [SerializeField] private AnimationCurve attackCurve;
-    [SerializeField] private Collider damageCollider;
-    [SerializeField] private TrailRenderer trailRenderer;
-    [SerializeField] private Transform pivotTransform;
+    [SerializeField]
+    private float damage;
 
-    public float Damage => damage;
+    [SerializeField]
+    private ElementalType element;
+
+    [SerializeField]
+    private float attackDuration;
+
+    [SerializeField]
+    private AnimationCurve attackCurve;
+
+    [SerializeField]
+    private Collider damageCollider;
+
+    [SerializeField]
+    private TrailRenderer trailRenderer;
+
+    [SerializeField]
+    private Transform pivotTransform;
+
     public ElementalType Element => element;
 
     private bool isAttacking;
+
+    public float DamageMultiplier = 1f;
 
     public void StartAttack()
     {
@@ -26,6 +40,16 @@ public class ScytheHandler : MonoBehaviour
         }
 
         StartCoroutine(Attack());
+    }
+
+    public float GetDamage()
+    {
+        return damage * DamageMultiplier;
+    }
+
+    public void SetElement(ElementalType newElement)
+    {
+        element = newElement;
     }
 
     private IEnumerator Attack()
@@ -41,7 +65,11 @@ public class ScytheHandler : MonoBehaviour
         while (t < 1)
         {
             t += Time.deltaTime / attackDuration;
-            pivotTransform.localEulerAngles = Vector3.Lerp(startRotation, endRotation, attackCurve.Evaluate(t));
+            pivotTransform.localEulerAngles = Vector3.Lerp(
+                startRotation,
+                endRotation,
+                attackCurve.Evaluate(t)
+            );
 
             yield return null;
         }
