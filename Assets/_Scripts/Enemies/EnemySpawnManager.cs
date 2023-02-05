@@ -33,8 +33,8 @@ public class EnemySpawnManager : MonoBehaviour
     {
         int rng = Random.Range(0, enemySpawners.Count);
 
-        EnemyController enemy = Instantiate(enemyPrefab, enemySpawners[rng].transform.position, Quaternion.identity);
-        enemy.transform.Rotate(Vector3.up, 45f);
+        EnemyController enemy = Instantiate(enemyPrefab, enemySpawners[rng].transform.position, enemyPrefab.transform.rotation);
+        //enemy.transform.Rotate(Vector3.up, 45f);
 
         rng = Random.Range(1, 4);
         ElementalType element = (ElementalType)rng;

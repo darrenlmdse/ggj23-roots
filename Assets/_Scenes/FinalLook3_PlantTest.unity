@@ -58717,7 +58717,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b2edd5bef4b18e4c807ca7ee51e6320, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plantPrefab: {fileID: 174108689120627692, guid: eddf6d16c7b59724c8cda0105c62bd79, type: 3}
+  plantPrefab: {fileID: 174108689120627692, guid: 84e433d9d7ac95e4cadf385b14c71949, type: 3}
 --- !u!4 &1402341617
 Transform:
   m_ObjectHideFlags: 0
