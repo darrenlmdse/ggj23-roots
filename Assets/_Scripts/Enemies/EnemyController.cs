@@ -25,14 +25,14 @@ public class EnemyController : MonoBehaviour
             element = value;
 
             SpriteRenderer sprite = spriteTransform.GetComponent<SpriteRenderer>();
-            sprite.sprite = sprites[(int)element];
+            sprite.sprite = sprites[(int)element-1];
         }
     }
 
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
-        baseSpriteRotation = spriteTransform.rotation;
+        baseSpriteRotation = transform.rotation;
     }
 
     private void Start()
@@ -63,7 +63,7 @@ public class EnemyController : MonoBehaviour
 
     private void Update()
     {
-        spriteTransform.rotation = baseSpriteRotation;
+        transform.rotation = baseSpriteRotation;
     }
 
     private void OnTriggerEnter(Collider other)
