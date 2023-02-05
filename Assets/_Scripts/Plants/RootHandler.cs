@@ -4,7 +4,7 @@ using UnityEngine;
 
 // TODO(darren): implement.
 // extend InteractableI to feed slime here
-public class RootHandler : MonoBehaviour
+public class RootHandler : InteractableI
 {
     [SerializeField]
     private GameObject plant;
@@ -30,4 +30,16 @@ public class RootHandler : MonoBehaviour
         // destroy plant
         Destroy(plant);
     }
+
+    protected override void StartPrimaryInteractionImplement(GameObject _player)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    protected override void FinishPrimaryInteractionImplement(GameObject _player)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    private void FeedSlime() { }
 }

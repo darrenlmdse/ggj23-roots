@@ -22,7 +22,6 @@ public class Cauldron : InteractableI
     {
         if (ingredientsPool.Count != kIngredientPoolSize)
         {
-            Debug.Log("0");
             return null;
         }
 
@@ -122,7 +121,6 @@ public class Cauldron : InteractableI
                 }
                 break;
         }
-        Debug.Log("7");
         return null;
     }
 
@@ -134,7 +132,6 @@ public class Cauldron : InteractableI
             return false;
         }
         ingredientsPool.Add(_ingredient);
-        Debug.Log("added:" + _ingredient.name);
         return true;
     }
 
@@ -150,11 +147,6 @@ public class Cauldron : InteractableI
         return ret;
     }
 
-    // TODO(darren): implement.
-    protected override void StartPrimaryActionHoldImpement(GameObject _player) { }
-
-    protected override void StopPrimaryActionHoldImplement(GameObject _player) { }
-
     protected override void StartPrimaryInteractionImplement(GameObject _player)
     {
         if (ingredientsPool.Count == 3)
@@ -163,12 +155,8 @@ public class Cauldron : InteractableI
             if (newPotion != null)
             {
                 interactionChannel.RaisePotionBrewed(_player, newPotion);
-                Debug.Log("made potion: " + newPotion);
             }
-            else
-            {
-                Debug.Log("failed to make potion");
-            }
+            else { }
             ClearAllIngredients();
             return;
         }

@@ -35,7 +35,7 @@ public class InteractionInstigator : MonoBehaviour
             int i = GetNearestInteractable();
             if (i > -1)
             {
-                nearbyInteractables[i].StartPrimaryActionHold(this.gameObject);
+                //nearbyInteractables[i].StartPrimaryActionHold(this.gameObject);
             }
         }
     }
@@ -47,7 +47,7 @@ public class InteractionInstigator : MonoBehaviour
             int i = GetNearestInteractable();
             if (i > -1)
             {
-                nearbyInteractables[i].StopPrimaryActionHold(this.gameObject);
+                //nearbyInteractables[i].StopPrimaryActionHold(this.gameObject);
             }
         }
     }
@@ -90,14 +90,14 @@ public class InteractionInstigator : MonoBehaviour
         if (!nearbyInteractables.Contains(_interactable))
         {
             nearbyInteractables.Add(_interactable);
-            Debug.Log("added: " + _interactable.name);
+            //Debug.Log("added: " + _interactable.name);
         }
     }
 
     public void RemoveInteractable(InteractableI _interactable)
     {
         nearbyInteractables.Remove(_interactable);
-        Debug.Log("remove: " + _interactable.name);
+        //Debug.Log("remove: " + _interactable.name);
     }
 
     private InteractableI FindFirst(Predicate<InteractableI> _predicate)

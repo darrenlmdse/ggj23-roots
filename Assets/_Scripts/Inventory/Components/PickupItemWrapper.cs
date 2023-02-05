@@ -68,14 +68,4 @@ public class PickupItemWrapper : InteractableI
         type = _type;
         RenderSprite();
     }
-
-    protected override void StartPrimaryActionHoldImpement(GameObject _player)
-    {
-        return;
-    }
-
-    protected override void StopPrimaryActionHoldImplement(GameObject _player)
-    {
-        return;
-    }
 }

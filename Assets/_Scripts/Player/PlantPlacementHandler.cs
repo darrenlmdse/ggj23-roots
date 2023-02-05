@@ -10,7 +10,7 @@ public class PlantPlacementHandler : MonoBehaviour
 
         if (Physics.Raycast(ray, out RaycastHit hit, 2))
         {
-            Debug.Log(hit.transform.name);
+            //Debug.Log(hit.transform.name);
             // TODO: Add plant type choices
             PlantManager.Instance.PlantSeed(hit.transform.position, PlantType.Cabbage);
         }

@@ -53,13 +53,10 @@ public class PlantHead : MonoBehaviour
         switch (plantType)
         {
             case PlantType.Cabbage:
-                Debug.Log("HERE1");
                 return IsFullyGrowth() ? plantsBook.cabbageGrown : plantsBook.cabbageYoung;
             case PlantType.Carrot:
-                Debug.Log("HERE2");
                 return IsFullyGrowth() ? plantsBook.carrotGrown : plantsBook.carrotYoung;
             case PlantType.Eggplant:
-                Debug.Log("HERE3");
                 return IsFullyGrowth() ? plantsBook.eggplantGrown : plantsBook.eggplantYoung;
         }
         return null;
