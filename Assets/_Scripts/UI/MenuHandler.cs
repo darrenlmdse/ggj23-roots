@@ -80,6 +80,7 @@ public class MenuHandler : MonoBehaviour
 
     public void Lose()
     {
-
+        Pause();
+        WinScreen.SetActive(true);
     }
 }
