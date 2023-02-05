@@ -22,7 +22,13 @@ public class InventorySlotUIController : MonoBehaviour
 
     public void SetOutlineImage(Sprite outline)
     {
+        outlineImage_.enabled = true;
         outlineImage_.sprite = outline;
+    }
+
+    public void DisableOutline()
+    {
+        outlineImage_.enabled = false;
     }
 
     public void SetIconImage(Sprite icon)
