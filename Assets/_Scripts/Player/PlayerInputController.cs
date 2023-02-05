@@ -69,7 +69,6 @@ public class PlayerInputController : MonoBehaviour
     public void OnAction1Hold(InputAction.CallbackContext _context)
     {
         /*
-        // TODO(darren): implement.
         _context.action.started += context =>
         {
             StartPrimaryActionHold();

@@ -40,4 +40,20 @@ public class InteractionChannel : ScriptableObject
     {
         OnPotionBrewed?.Invoke(_player, _potion);
     }
+
+    public delegate void PlantCallback(Vector3 plantPos, Ingredient ingredient);
+    public PlantCallback OnPlantHarvested;
+
+    public void RaisePlantHarvested(Vector3 plantPos, Ingredient ingredient)
+    {
+        OnPlantHarvested?.Invoke(plantPos, ingredient);
+    }
+
+    public delegate void SlimeCallback(Vector3 deadPos, SlimePart slimePart);
+    public SlimeCallback OnSlimeKilled;
+
+    public void RaiseSlimeKilled(Vector3 deadPos, SlimePart slimePart)
+    {
+        OnSlimeKilled?.Invoke(deadPos, slimePart);
+    }
 }

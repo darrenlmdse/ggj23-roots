@@ -16,6 +16,8 @@ public class StuffManager : MonoBehaviour
         interactionChannel.OnPickupInteracted += InteractionChannel_OnPickupInteracted;
         interactionChannel.OnInventoryItemDiscarded += InteractionChannel_OnInventoryItemDiscarded;
         interactionChannel.OnPotionBrewed += InteractionChannel_OnPotionBrewed;
+
+        interactionChannel.OnPlantHarvested += InteractionChannel_OnPlantHarvested;
     }
 
     private void OnDestroy()
@@ -23,6 +25,8 @@ public class StuffManager : MonoBehaviour
         interactionChannel.OnPickupInteracted -= InteractionChannel_OnPickupInteracted;
         interactionChannel.OnInventoryItemDiscarded -= InteractionChannel_OnInventoryItemDiscarded;
         interactionChannel.OnPotionBrewed -= InteractionChannel_OnPotionBrewed;
+
+        interactionChannel.OnPlantHarvested -= InteractionChannel_OnPlantHarvested;
     }
 
     private void InteractionChannel_OnInventoryItemDiscarded(
@@ -64,5 +68,29 @@ public class StuffManager : MonoBehaviour
             .GetComponent<PickupItemWrapper>();
         newPickup.SetData(_potion);
         newPickup.SetType(ItemType.Potion);
+    }
+
+    private void InteractionChannel_OnPlantHarvested(Vector3 plantPos, Ingredient ingredient)
+    {
+        int harvestCount = 2;
+        if (ingredient.ElementType == ElementalType.Neutral)
+        {
+            harvestCount += 1;
+        }
+        int sign = 1;
+
+        for (int i = 0; i < harvestCount; ++i)
+        {
+            PickupItemWrapper newPickup = Instantiate(
+                    pickupPrefab,
+                    plantPos + new Vector3((0f + ((float)i) / 2.5f) * sign, 0.3f, -0.1f),
+                    Quaternion.identity
+                )
+                .GetComponent<PickupItemWrapper>();
+            newPickup.SetData(ingredient);
+            newPickup.SetType(ItemType.Ingredient);
+
+            sign *= -1;
+        }
     }
 }

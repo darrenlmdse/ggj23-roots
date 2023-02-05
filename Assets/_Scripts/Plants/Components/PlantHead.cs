@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlantHead : MonoBehaviour
+public class PlantHead : InteractableI
 {
     [SerializeField]
     private RootHandler root;
@@ -11,32 +11,48 @@ public class PlantHead : MonoBehaviour
     private SpriteRenderer topSpriteRenderer;
 
     [SerializeField]
-    private Sprout sprout;
-
-    [SerializeField]
-    private float growthTimeS = 10f;
-
-    [SerializeField]
     private PlantsBook plantsBook;
+
+    [SerializeField]
+    private IngredientsBook ingredientsBook;
+
+    [SerializeField]
+    private InteractionChannel interactionChannel;
+
+    private float growthTimeS = 5f;
+
+    private float healPotionEffect = 5f;
 
     private PlantType plantType;
 
     private bool hasSlime;
     private bool hasGrown;
 
+    private float timeElapsed;
+
     private void Awake()
     {
         hasSlime = false;
         hasGrown = false;
+        timeElapsed = 0f;
     }
 
     private void Start()
     {
-        sprout.enabled = true;
         RenderPlantHead();
     }
 
-    private void Update() { }
+    private void Update()
+    {
+        if (!hasGrown)
+        {
+            timeElapsed += Time.deltaTime;
+            if (timeElapsed >= growthTimeS)
+            {
+                SetGrown();
+            }
+        }
+    }
 
     public void SetUp(PlantType _plantType)
     {
@@ -66,8 +82,6 @@ public class PlantHead : MonoBehaviour
     {
         hasSlime = true;
         RenderPlantHead();
-        // TODO(darren): implement.
-        // modify elemental type
     }
 
     public void SetGrown()
@@ -79,5 +93,60 @@ public class PlantHead : MonoBehaviour
     private bool IsFullyGrowth()
     {
         return hasSlime && hasGrown;
+    }
+
+    protected override void StartPrimaryInteractionImplement(GameObject _player)
+    {
+        if (IsFullyGrowth())
+        {
+            interactionChannel.RaisePlantHarvested(
+                this.transform.position,
+                ingredientsBook.GetIngredient(plantType, root.Element)
+            );
+            _player.GetComponent<InteractionInstigator>().RemoveInteractable(this);
+            root.DestroyThisPlant();
+            return;
+        }
+
+        InventorySlot currentSlot = _player.GetComponent<InventoryHolder>().CurrentSelectedSlot;
+        if (
+            currentSlot == null
+            || currentSlot.Item == null
+            || currentSlot.Item.ItemType != ItemType.Potion
+        )
+        {
+            return;
+        }
+
+        if (SupplyPotion(currentSlot.Item.ItemData as PotionData))
+        {
+            FinishPrimaryInteraction(_player);
+        }
+    }
+
+    protected override void FinishPrimaryInteractionImplement(GameObject _player)
+    {
+        _player.GetComponent<InventoryHolder>().ClearCurrentSlot();
+    }
+
+    private bool SupplyPotion(PotionData potionData)
+    {
+        switch (potionData.BuffType)
+        {
+            case BuffType.Health:
+                root.Heal(healPotionEffect);
+                return true;
+
+            case BuffType.Attack:
+                // TODO(darren): implement.
+                // damage enemies around roots
+                return true;
+
+            case BuffType.Speed:
+                SetGrown();
+                return true;
+        }
+
+        return false;
     }
 }
