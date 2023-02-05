@@ -122,6 +122,15 @@ public class PlayerInputController : MonoBehaviour
         {
             if (canDrinkPotion)
             {
+                InventorySlot currentSlot = inventoryHolder.CurrentSelectedSlot;
+                if (
+                    currentSlot == null
+                    || currentSlot.Item == null
+                    || currentSlot.Item.ItemType != ItemType.Potion
+                )
+                {
+                    return;
+                }
                 if (
                     potionDrinker.DrinkPotion(
                         inventoryHolder.CurrentSelectedSlot.Item.ItemData as PotionData
@@ -161,7 +170,7 @@ public class PlayerInputController : MonoBehaviour
 
                 if (!isAttacking)
                 {
-                    // animator.CrossFade("Run", 0.1f);
+                    animator.CrossFade("Run", 0.1f);
                 }
             }
 
@@ -173,7 +182,7 @@ public class PlayerInputController : MonoBehaviour
 
             if (!isAttacking)
             {
-                //animator.CrossFade("Idle", 0.1f);
+                animator.CrossFade("Idle", 0.1f);
             }
         }
 
@@ -183,39 +192,39 @@ public class PlayerInputController : MonoBehaviour
     private void StartPrimaryActionPress()
     {
         //Debug.Log(gameObject.name + " primary action press");
-        InventorySlot currentEquip = inventoryHolder.CurrentSelectedSlot;
-        if (interactionInstigator.StartPrimaryActionPress())
-        {
-            // nothing to do for now
-        }
-        else if (currentEquip.Item != null && currentEquip.Item.ItemType == ItemType.Ingredient)
-        {
-            // try planting instead
-            Ray ray = new Ray(transform.position, -Vector3.up);
-            if (Physics.Raycast(ray, out RaycastHit hit, 2))
-            {
-                Vector3 testPlantPos = hit.transform.position;
-                if (PlantManager.Instance.HasPlantHead(testPlantPos))
-                {
-                    // cannot plant
-                }
-                else
-                {
-                    // can plant
-                    PlantManager.Instance.PlantSeed(
-                        testPlantPos,
-                        (currentEquip.Item.ItemData as Ingredient).PlantType
-                    );
-                    GetComponent<InventoryHolder>().ClearCurrentSlot();
-                }
-            }
-        }
+        interactionInstigator.StartPrimaryActionPress();
     }
 
     private void StartSecondaryActionPress()
     {
         //Debug.Log(gameObject.name + " secondary action press");
         StartCoroutine(WaitForAttackEnd());
+        InventorySlot currentEquip = inventoryHolder.CurrentSelectedSlot;
+        if (!canDrinkPotion)
+        {
+            if (currentEquip.Item != null && currentEquip.Item.ItemType == ItemType.Ingredient)
+            {
+                // try planting instead
+                Ray ray = new Ray(transform.position, -Vector3.up);
+                if (Physics.Raycast(ray, out RaycastHit hit, 2))
+                {
+                    Vector3 testPlantPos = hit.transform.position;
+                    if (PlantManager.Instance.HasPlantHead(testPlantPos))
+                    {
+                        // cannot plant
+                    }
+                    else
+                    {
+                        // can plant
+                        PlantManager.Instance.PlantSeed(
+                            testPlantPos,
+                            (currentEquip.Item.ItemData as Ingredient).PlantType
+                        );
+                        GetComponent<InventoryHolder>().ClearCurrentSlot();
+                    }
+                }
+            }
+        }
     }
 
     private void StartPrimaryActionHold()

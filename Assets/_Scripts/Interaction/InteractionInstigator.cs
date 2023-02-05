@@ -98,6 +98,15 @@ public class InteractionInstigator : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay(Collider _other)
+    {
+        InteractableI interactable = _other.GetComponent<InteractableI>();
+        if (interactable != null && !nearbyInteractables.Contains(interactable))
+        {
+            AddInteractable(interactable);
+        }
+    }
+
     public void AddInteractable(InteractableI _interactable)
     {
         if (!nearbyInteractables.Contains(_interactable))

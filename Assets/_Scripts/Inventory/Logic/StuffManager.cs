@@ -56,21 +56,24 @@ public class StuffManager : MonoBehaviour
 
     private void InteractionChannel_OnPickupInteracted(GameObject _player, PickupItemWrapper _pu)
     {
-        _player
-            .GetComponent<InventoryHolder>()
-            .TryAddingToInventory(new InventoryItemWrapper(_pu.PickupData, _pu.Type));
+        if (
+            _player
+                .GetComponent<InventoryHolder>()
+                .TryAddingToInventory(new InventoryItemWrapper(_pu.PickupData, _pu.Type))
+        )
+        {
+            _player.GetComponent<InteractionInstigator>().RemoveInteractable(_pu);
 
-        _player.GetComponent<InteractionInstigator>().RemoveInteractable(_pu);
-
-        _pu.FinishPrimaryInteraction(_player);
-        interactionChannel.RaisePickupCollected(_player, _pu);
+            _pu.FinishPrimaryInteraction(_player);
+            interactionChannel.RaisePickupCollected(_player, _pu);
+        }
     }
 
     private void InteractionChannel_OnPotionBrewed(GameObject _player, PotionData _potion)
     {
         PickupItemWrapper newPickup = Instantiate(
                 pickupPrefab,
-                _player.transform.position,
+                _player.transform.position + new Vector3(-2f, 0.3f, -2f),
                 Quaternion.identity
             )
             .GetComponent<PickupItemWrapper>();
