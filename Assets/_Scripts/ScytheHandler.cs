@@ -6,7 +6,7 @@ using static EnemyController;
 public class ScytheHandler : MonoBehaviour
 {
     [SerializeField] private float damage;
-    [SerializeField] private ElementType element;
+    [SerializeField] private ElementalType element;
     [SerializeField] private float attackDuration;
     [SerializeField] private AnimationCurve attackCurve;
     [SerializeField] private Collider damageCollider;
@@ -14,7 +14,7 @@ public class ScytheHandler : MonoBehaviour
     [SerializeField] private Transform pivotTransform;
 
     public float Damage => damage;
-    public ElementType Element => element;
+    public ElementalType Element => element;
 
     private bool isAttacking;
 

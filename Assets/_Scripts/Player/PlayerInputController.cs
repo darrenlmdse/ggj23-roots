@@ -188,7 +188,7 @@ public class PlayerInputController : MonoBehaviour
     private IEnumerator WaitForAttackEnd()
     {
         isAttacking = true;
-        // animator.CrossFade("Attack", 0.1f);
+        animator.CrossFade("Attack", 0.1f);
         attackEvent?.Invoke();
 
         yield return new WaitForSeconds(0.75f);
