@@ -17,6 +17,9 @@ public class PlayerInputController : MonoBehaviour
     [SerializeField]
     private UnityEvent attackEvent;
 
+    [SerializeField]
+    private PotionDrinker potionDrinker;
+
     private CharacterController controller;
     private InteractionInstigator interactionInstigator;
     private InventoryHolder inventoryHolder;
@@ -26,16 +29,20 @@ public class PlayerInputController : MonoBehaviour
 
     private bool isMoving;
     private bool isAttacking;
+    private bool canDrinkPotion;
 
     private Vector3 adjustedForward;
     private Vector3 adjustedRight;
     private Vector3 baseScale;
+
+    public float SpeedModifier = 1f;
 
     private void Awake()
     {
         adjustedForward = (Vector3.forward + Vector3.right).normalized;
         adjustedRight = (-Vector3.forward + Vector3.right).normalized;
         baseScale = animator.transform.localScale;
+        canDrinkPotion = false;
     }
 
     private void Start()
@@ -43,6 +50,11 @@ public class PlayerInputController : MonoBehaviour
         controller = gameObject.GetComponent<CharacterController>();
         interactionInstigator = gameObject.GetComponent<InteractionInstigator>();
         inventoryHolder = gameObject.GetComponent<InventoryHolder>();
+
+        if (potionDrinker != null)
+        {
+            canDrinkPotion = true;
+        }
     }
 
     public void OnMove(InputAction.CallbackContext _context)
@@ -108,7 +120,17 @@ public class PlayerInputController : MonoBehaviour
     {
         _context.action.performed += context =>
         {
-            inventoryHolder.ConsumeCurrentSlot();
+            if (canDrinkPotion)
+            {
+                if (
+                    potionDrinker.DrinkPotion(
+                        inventoryHolder.CurrentSelectedSlot.Item.ItemData as PotionData
+                    )
+                )
+                {
+                    inventoryHolder.ClearCurrentSlot();
+                }
+            }
         };
     }
 
@@ -120,7 +142,7 @@ public class PlayerInputController : MonoBehaviour
     private void CheckHorizontalMove()
     {
         Vector3 move = adjustedForward * movementInput.y + adjustedRight * movementInput.x; //new Vector3(movementInput.x, 0, movementInput.y);
-        controller.Move(move * Time.deltaTime * playerSpeed);
+        controller.Move(move * Time.deltaTime * playerSpeed * SpeedModifier);
 
         if (movementInput.x > 0)
         {
