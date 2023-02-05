@@ -5,13 +5,18 @@ using UnityEngine;
 public class PotionDrinker : MonoBehaviour
 {
     [SerializeField]
-    private float health = 100f;
+    public float health = 50f;
 
     [SerializeField]
     private ScytheHandler scytheHandler;
 
     [SerializeField]
     private PlayerInputController playerInputController;
+
+    public delegate void HealthCallback(float health, float max);
+    public HealthCallback OnHealthChanged;
+
+    public float maxHealth = 100f;
 
     struct Boost
     {
@@ -23,6 +28,9 @@ public class PotionDrinker : MonoBehaviour
     Boost attackBoost;
     Boost speedBoost;
 
+    private float timeElapsed;
+    private float healthDeductTime;
+
     private void Awake()
     {
         attackBoost.timeMax = 5f;
@@ -32,6 +40,9 @@ public class PotionDrinker : MonoBehaviour
         speedBoost.timeMax = 5f;
         speedBoost.timeElapsed = 0f;
         speedBoost.isBoosting = false;
+
+        timeElapsed = 0f;
+        healthDeductTime = 60f;
     }
 
     private void Update()
@@ -57,6 +68,13 @@ public class PotionDrinker : MonoBehaviour
                 playerInputController.SpeedModifier = 1f;
             }
         }
+
+        timeElapsed += Time.deltaTime;
+        if (timeElapsed >= healthDeductTime)
+        {
+            ChangeHealth(-10);
+            timeElapsed -= healthDeductTime;
+        }
     }
 
     public bool DrinkPotion(PotionData potionData)
@@ -65,7 +83,7 @@ public class PotionDrinker : MonoBehaviour
         switch (potionData.BuffType)
         {
             case BuffType.Health:
-                // TODO(darren): implement.
+                ChangeHealth(+10);
                 return true;
             case BuffType.Attack:
                 scytheHandler.DamageMultiplier = 2f;
@@ -77,5 +95,11 @@ public class PotionDrinker : MonoBehaviour
                 return true;
         }
         return false;
+    }
+
+    public void ChangeHealth(float delta)
+    {
+        health += delta;
+        OnHealthChanged?.Invoke(health, maxHealth);
     }
 }

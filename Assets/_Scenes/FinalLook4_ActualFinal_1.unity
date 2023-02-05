@@ -31320,6 +31320,71 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4466383482233302109, guid: c4b1aafad4e975346bf2f3cd98ad0419, type: 3}
   m_PrefabInstance: {fileID: 696279336}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &703522938
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 971120910}
+    m_Modifications:
+    - target: {fileID: 684478814039863712, guid: c4ecedaf1d22de34db57da72edf6b6db, type: 3}
+      propertyPath: m_Name
+      value: Potion (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 684478814039863713, guid: c4ecedaf1d22de34db57da72edf6b6db, type: 3}
+      propertyPath: type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 684478814039863713, guid: c4ecedaf1d22de34db57da72edf6b6db, type: 3}
+      propertyPath: pickupData
+      value: 
+      objectReference: {fileID: 11400000, guid: 7e6a89bf8b0c87341b882a17bc1ef707, type: 2}
+    - target: {fileID: 684478814039863726, guid: c4ecedaf1d22de34db57da72edf6b6db, type: 3}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 684478814039863726, guid: c4ecedaf1d22de34db57da72edf6b6db, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -24.319
+      objectReference: {fileID: 0}
+    - target: {fileID: 684478814039863726, guid: c4ecedaf1d22de34db57da72edf6b6db, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.78
+      objectReference: {fileID: 0}
+    - target: {fileID: 684478814039863726, guid: c4ecedaf1d22de34db57da72edf6b6db, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 14.746
+      objectReference: {fileID: 0}
+    - target: {fileID: 684478814039863726, guid: c4ecedaf1d22de34db57da72edf6b6db, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 684478814039863726, guid: c4ecedaf1d22de34db57da72edf6b6db, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 684478814039863726, guid: c4ecedaf1d22de34db57da72edf6b6db, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 684478814039863726, guid: c4ecedaf1d22de34db57da72edf6b6db, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 684478814039863726, guid: c4ecedaf1d22de34db57da72edf6b6db, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 684478814039863726, guid: c4ecedaf1d22de34db57da72edf6b6db, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 684478814039863726, guid: c4ecedaf1d22de34db57da72edf6b6db, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c4ecedaf1d22de34db57da72edf6b6db, type: 3}
 --- !u!1001 &706342025
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32412,6 +32477,11 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.02, y: 0.020000005, z: 0.020000005}
   m_Center: {x: 0, y: -0.00000011920929, z: 0}
+--- !u!4 &732175997 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 684478814039863726, guid: c4ecedaf1d22de34db57da72edf6b6db, type: 3}
+  m_PrefabInstance: {fileID: 703522938}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &738350987
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -41467,7 +41537,7 @@ PrefabInstance:
     - target: {fileID: 684478814039863713, guid: c4ecedaf1d22de34db57da72edf6b6db, type: 3}
       propertyPath: pickupData
       value: 
-      objectReference: {fileID: 11400000, guid: 7167c34c86d08ed419fe057d02002317, type: 2}
+      objectReference: {fileID: 11400000, guid: 7e6a89bf8b0c87341b882a17bc1ef707, type: 2}
     - target: {fileID: 684478814039863726, guid: c4ecedaf1d22de34db57da72edf6b6db, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -42364,6 +42434,7 @@ Transform:
   - {fileID: 204717684}
   - {fileID: 383899866}
   - {fileID: 418031393}
+  - {fileID: 732175997}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -75231,6 +75302,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1637880629756384707, guid: b1140a938f4f145499c30de0be4b16b2, type: 3}
+      propertyPath: potionDrinker
+      value: 
+      objectReference: {fileID: 1832887846}
     - target: {fileID: 4511499251527567722, guid: b1140a938f4f145499c30de0be4b16b2, type: 3}
       propertyPath: m_Name
       value: CatInventory
@@ -75243,6 +75318,26 @@ PrefabInstance:
       propertyPath: inventoryHolder_
       value: 
       objectReference: {fileID: 49897333}
+    - target: {fileID: 4511499252573887271, guid: b1140a938f4f145499c30de0be4b16b2, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4917668305781029457, guid: b1140a938f4f145499c30de0be4b16b2, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4917668305781029457, guid: b1140a938f4f145499c30de0be4b16b2, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4917668305781029457, guid: b1140a938f4f145499c30de0be4b16b2, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4917668305781029457, guid: b1140a938f4f145499c30de0be4b16b2, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4968989624907164913, guid: b1140a938f4f145499c30de0be4b16b2, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -78080,9 +78175,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a6cbbcd940f766409037120c4ccdffa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 50
   scytheHandler: {fileID: 261865360}
   playerInputController: {fileID: 1832887848}
+  maxHealth: 100
 --- !u!114 &1832887848 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7674340745465064530, guid: a79be8332db810843b967ecd4a5d644f, type: 3}
