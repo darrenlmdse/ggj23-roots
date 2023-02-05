@@ -5,14 +5,17 @@ public class CombatChannel : ScriptableObject
 {
     public delegate void RootCombatCallback(RootHandler root);
     public RootCombatCallback OnRootAttacked;
-    public RootCombatCallback OnRootDestroyed;
+
+    public delegate void PlantCombatCallback(PlantHead root);
+
+    public PlantCombatCallback OnRootDestroyed;
 
     public void RaiseRootAttacked(RootHandler root)
     {
         OnRootAttacked?.Invoke(root);
     }
 
-    public void RaiseRootDestroyed(RootHandler root)
+    public void RaiseRootDestroyed(PlantHead root)
     {
         OnRootDestroyed?.Invoke(root);
     }

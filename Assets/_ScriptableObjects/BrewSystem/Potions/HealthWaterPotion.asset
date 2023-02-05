@@ -15,4 +15,4 @@ MonoBehaviour:
   displayName: Health (Neutral)
   elementType: 3
   buffType: 0
-  sprite: {fileID: 21300000, guid: 3aca91bfb549b6e43b30bc2c8a8364df, type: 3}
+  sprite: {fileID: 21300000, guid: bff1953750fa88a468edd24fd7ff97c3, type: 3}

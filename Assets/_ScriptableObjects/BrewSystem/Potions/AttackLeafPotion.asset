@@ -15,4 +15,4 @@ MonoBehaviour:
   displayName: Attack (Leaf)
   elementType: 2
   buffType: 2
-  sprite: {fileID: 21300000, guid: f9c8cb334b47ed347a0ec1f06e3022e9, type: 3}
+  sprite: {fileID: 21300000, guid: cb9a023ad734e0241913217673006cda, type: 3}

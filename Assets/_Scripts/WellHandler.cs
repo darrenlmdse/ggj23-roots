@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WellHandler : MonoBehaviour
+public class WellHandler : InteractableI
 {
     [SerializeField]
     private Transform topTransform;
@@ -11,15 +11,29 @@ public class WellHandler : MonoBehaviour
     [SerializeField]
     private Transform bottomTransform;
 
-    [SerializeField] private float dropDuration;
-    [SerializeField] private AnimationCurve dropCurve;
+    [SerializeField]
+    private GameObject pickupPrefab;
+
+    [SerializeField]
+    private float dropDuration;
+
+    [SerializeField]
+    private AnimationCurve dropCurve;
 
     [Button]
-    public void DropPotion(GameObject potionPrefab)
+    public bool DropPotion(PotionData potionData)
     {
-        GameObject spawnedPotion = Instantiate(potionPrefab, topTransform.position, potionPrefab.transform.rotation);
+        GameObject spawnedPotion = Instantiate(
+            pickupPrefab,
+            topTransform.position,
+            Quaternion.identity
+        );
+        PickupItemWrapper newPickup = spawnedPotion.GetComponent<PickupItemWrapper>();
+        newPickup.SetData(potionData);
+        newPickup.SetType(ItemType.Potion);
 
         StartCoroutine(AnimateDrop(spawnedPotion.transform));
+        return true;
     }
 
     private IEnumerator AnimateDrop(Transform potion)
@@ -30,9 +44,36 @@ public class WellHandler : MonoBehaviour
         {
             t += Time.deltaTime / dropDuration;
 
-            potion.position = Vector3.Lerp(topTransform.position, bottomTransform.position, dropCurve.Evaluate(t));
+            potion.position = Vector3.Lerp(
+                topTransform.position,
+                bottomTransform.position,
+                dropCurve.Evaluate(t)
+            );
 
             yield return null;
         }
+    }
+
+    protected override void StartPrimaryInteractionImplement(GameObject _player)
+    {
+        InventorySlot currentSlot = _player.GetComponent<InventoryHolder>().CurrentSelectedSlot;
+        if (
+            currentSlot == null
+            || currentSlot.Item == null
+            || currentSlot.Item.ItemType != ItemType.Potion
+        )
+        {
+            return;
+        }
+
+        if (DropPotion(currentSlot.Item.ItemData as PotionData))
+        {
+            FinishPrimaryInteraction(_player);
+        }
+    }
+
+    protected override void FinishPrimaryInteractionImplement(GameObject _player)
+    {
+        _player.GetComponent<InventoryHolder>().ClearCurrentSlot();
     }
 }

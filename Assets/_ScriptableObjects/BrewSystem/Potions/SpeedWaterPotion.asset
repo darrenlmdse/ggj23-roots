@@ -15,4 +15,4 @@ MonoBehaviour:
   displayName: Speed (Neutral)
   elementType: 3
   buffType: 1
-  sprite: {fileID: 21300000, guid: 3aca91bfb549b6e43b30bc2c8a8364df, type: 3}
+  sprite: {fileID: 21300000, guid: 8a237ac13fe4203418ad59b2eb28d16e, type: 3}

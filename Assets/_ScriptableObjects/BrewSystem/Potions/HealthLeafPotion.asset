@@ -15,4 +15,4 @@ MonoBehaviour:
   displayName: Health (Leaf)
   elementType: 2
   buffType: 0
-  sprite: {fileID: 21300000, guid: f9c8cb334b47ed347a0ec1f06e3022e9, type: 3}
+  sprite: {fileID: 21300000, guid: 3482d7f0286552649aed1c54030dd257, type: 3}
