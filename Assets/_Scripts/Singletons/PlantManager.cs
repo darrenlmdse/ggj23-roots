@@ -37,6 +37,7 @@ public class PlantManager : MonoBehaviour
     public void PlantSeed(Vector3 plantPoint, PlantType p_plantType)
     {
         GameObject plant = Instantiate(plantPrefab, plantPoint, Quaternion.identity);
+        plant.GetComponent<PlantHead>().SetUp(p_plantType);
         plantPoints.Add(plantPoint);
         roots.Add(plant.GetComponentInChildren<RootHandler>().transform);
     }

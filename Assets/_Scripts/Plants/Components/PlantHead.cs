@@ -4,14 +4,83 @@ using UnityEngine;
 
 public class PlantHead : MonoBehaviour
 {
-    private PlantRoot myRoot;
+    [SerializeField]
+    private RootHandler root;
 
-    public delegate void HeadEventCallback();
-    public HeadEventCallback OnHeadPlanted;
-    public HeadEventCallback OnHeadHaversted;
+    [SerializeField]
+    private SpriteRenderer topSpriteRenderer;
 
-    public void SetRoot(PlantRoot _root)
+    [SerializeField]
+    private Sprout sprout;
+
+    [SerializeField]
+    private float growthTimeS = 10f;
+
+    [SerializeField]
+    private PlantsBook plantsBook;
+
+    private PlantType plantType;
+
+    private bool hasSlime;
+    private bool hasGrown;
+
+    private void Awake()
     {
-        myRoot = _root;
+        hasSlime = false;
+        hasGrown = false;
+    }
+
+    private void Start()
+    {
+        sprout.enabled = true;
+        RenderPlantHead();
+    }
+
+    private void Update() { }
+
+    public void SetUp(PlantType _plantType)
+    {
+        plantType = _plantType;
+    }
+
+    private void RenderPlantHead()
+    {
+        topSpriteRenderer.sprite = GetHeadSprite();
+    }
+
+    private Sprite GetHeadSprite()
+    {
+        switch (plantType)
+        {
+            case PlantType.Cabbage:
+                Debug.Log("HERE1");
+                return IsFullyGrowth() ? plantsBook.cabbageGrown : plantsBook.cabbageYoung;
+            case PlantType.Carrot:
+                Debug.Log("HERE2");
+                return IsFullyGrowth() ? plantsBook.carrotGrown : plantsBook.carrotYoung;
+            case PlantType.Eggplant:
+                Debug.Log("HERE3");
+                return IsFullyGrowth() ? plantsBook.eggplantGrown : plantsBook.eggplantYoung;
+        }
+        return null;
+    }
+
+    public void SetSlime(ElementalType slimeType)
+    {
+        hasSlime = true;
+        RenderPlantHead();
+        // TODO(darren): implement.
+        // modify elemental type
+    }
+
+    public void SetGrown()
+    {
+        hasGrown = true;
+        RenderPlantHead();
+    }
+
+    private bool IsFullyGrowth()
+    {
+        return hasSlime && hasGrown;
     }
 }

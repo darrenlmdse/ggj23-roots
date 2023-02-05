@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// TODO(darren): implement.
+// extend InteractableI to feed slime here
 public class RootHandler : MonoBehaviour
 {
     [SerializeField]

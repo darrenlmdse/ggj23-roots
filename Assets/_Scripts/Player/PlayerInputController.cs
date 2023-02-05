@@ -186,6 +186,7 @@ public class PlayerInputController : MonoBehaviour
                         testPlantPos,
                         (currentEquip.Item.ItemData as Ingredient).PlantType
                     );
+                    GetComponent<InventoryHolder>().ClearCurrentSlot();
                 }
             }
         }
